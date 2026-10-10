@@ -1,0 +1,6 @@
+scrcpy 4.1 <https://github.com/Genymobile/scrcpy>
+INFO: ADB device found:
+INFO:     --> (tcpip)  emulator-5554                   device  sdk_gphone64_x86_64
+C:\Users\atfso\AppData\Local\Microsoft\WinGet\Packages\Genymobile.scrcpy_Microsoft.Winget.Source_8wekyb3d8bbwe\scrcpy-win64-v4.1\scrcpy-server: 1 file pushed, 0 skipped. 21.6 MB/s (733706 bytes in 0.032s)
+[server] INFO: Device: [Google] google sdk_gphone64_x86_64 (Android 14)
+INFO: Renderer: direct3d11
