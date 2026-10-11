@@ -106,10 +106,10 @@ Route::prefix('v1')->group(function () {
     });
 
     // ==========================================
-    // 5. Telegram Bot Webhook & Diagnostics
+    // 5. Telegram Bot Inbound Webhook
+    // (Validated via X-Telegram-Bot-Api-Secret-Token)
     // ==========================================
     Route::post('/telegram/webhook', [\App\Http\Controllers\Api\TelegramWebhookController::class, 'handle']);
-    Route::get('/telegram/status', [\App\Http\Controllers\Api\TelegramWebhookController::class, 'status']);
 
     // ==========================================
     // 6. Admin Routes (Require Admin Role)
@@ -123,4 +123,4 @@ Route::prefix('v1')->group(function () {
 $filePath = 'C:\xampp\htdocs\finesseodds\routes\api.php'
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($filePath, $content, $utf8NoBom)
-Write-Host "routes/api.php successfully written without BOM."
+Write-Host "routes/api.php successfully written without BOM (telegram/status removed)."
