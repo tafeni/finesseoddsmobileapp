@@ -23,7 +23,7 @@
 <div class="flex items-center gap-1.5 min-w-0 text-on-surface-variant truncate">
 <span class="font-data-caption text-data-caption uppercase tracking-wider">Radar</span>
 <span class="material-symbols-outlined text-[12px] opacity-40">chevron_right</span>
-<span class="font-headline-sm text-[13px] font-semibold text-primary truncate">Arsenal vs Chelsea</span>
+<span id="pred-breadcrumb" class="font-headline-sm text-[13px] font-semibold text-primary truncate">Arsenal vs Chelsea</span>
 </div>
 </div>
 <div class="flex items-center gap-space-xs shrink-0">
@@ -42,10 +42,10 @@
 <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-container opacity-75"></span>
 <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-container"></span>
 </span>
-<span class="font-label-caps text-label-caps uppercase text-secondary tracking-widest font-bold">Kickoff in 02h 45m</span>
+<span id="pred-kickoff-countdown" class="font-label-caps text-label-caps uppercase text-secondary tracking-widest font-bold">Kickoff in 02h 45m</span>
 </div>
 <div class="flex items-center gap-2 font-data-caption text-data-caption text-on-surface-variant">
-<span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-primary">stadium</span>Emirates</span>
+<span id="pred-venue" class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-primary">stadium</span>Emirates</span>
 <span class="text-outline-variant">•</span>
 <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-tertiary">cloud</span>14°C</span>
 </div>
@@ -57,8 +57,8 @@
 <!-- League and Referee sub-row -->
 <div class="flex items-center justify-between pb-1">
 <div class="flex items-center gap-1.5">
-<div class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-primary">PL</div>
-<span class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Premier League • Matchday 29</span>
+<div id="pred-league-icon" class="w-5 h-5 rounded-full bg-surface-container-high flex items-center justify-center text-[10px] font-bold text-primary">PL</div>
+<span id="pred-league-sub" class="font-label-caps text-label-caps uppercase tracking-wider text-on-surface-variant">Premier League • Matchday 29</span>
 </div>
 <span class="font-data-caption text-data-caption text-outline">Ref: M. Oliver (3.8 YC/gm)</span>
 </div>
@@ -67,17 +67,17 @@
 <!-- Home Team: Arsenal -->
 <div class="col-span-5 flex flex-col items-center text-center">
 <div class="relative w-14 h-14 rounded-2xl bg-surface-container-high p-2 flex items-center justify-center shadow-inner">
-<div class="w-10 h-10 rounded-xl bg-error-container/30 flex items-center justify-center font-headline-md text-headline-md font-extrabold text-error">
+<div id="pred-home-abbr" class="w-10 h-10 rounded-xl bg-error-container/30 flex items-center justify-center font-headline-md text-headline-md font-extrabold text-error">
               ARS
             </div>
 <div class="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full bg-primary-container text-on-primary font-label-caps text-[9px] font-black leading-none">
               #1
             </div>
 </div>
-<h2 class="mt-2 font-headline-sm text-headline-sm text-on-surface leading-tight">Arsenal</h2>
-<span class="font-data-caption text-data-caption text-tertiary font-semibold">2.4 GF / 0.8 GA</span>
+<h2 id="pred-home-name" class="mt-2 font-headline-sm text-headline-sm text-on-surface leading-tight">Arsenal</h2>
+<span id="pred-home-stats" class="font-data-caption text-data-caption text-tertiary font-semibold">2.4 GF / 0.8 GA</span>
 <!-- Form Badges -->
-<div class="flex items-center gap-1 mt-1.5">
+<div id="pred-home-form" class="flex items-center gap-1 mt-1.5">
 <span class="w-4 h-4 rounded-full bg-tertiary-container text-on-tertiary-container font-label-caps text-[9px] flex items-center justify-center font-black">W</span>
 <span class="w-4 h-4 rounded-full bg-tertiary-container text-on-tertiary-container font-label-caps text-[9px] flex items-center justify-center font-black">W</span>
 <span class="w-4 h-4 rounded-full bg-surface-variant text-on-surface font-label-caps text-[9px] flex items-center justify-center font-black">D</span>
@@ -92,17 +92,17 @@
 <!-- Away Team: Chelsea -->
 <div class="col-span-5 flex flex-col items-center text-center">
 <div class="relative w-14 h-14 rounded-2xl bg-surface-container-high p-2 flex items-center justify-center shadow-inner">
-<div class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center font-headline-md text-headline-md font-extrabold text-primary">
+<div id="pred-away-abbr" class="w-10 h-10 rounded-xl bg-primary-container/20 flex items-center justify-center font-headline-md text-headline-md font-extrabold text-primary">
               CHE
             </div>
 <div class="absolute -bottom-1 -right-1 px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant font-label-caps text-[9px] font-black leading-none">
               #5
             </div>
 </div>
-<h2 class="mt-2 font-headline-sm text-headline-sm text-on-surface leading-tight">Chelsea</h2>
-<span class="font-data-caption text-data-caption text-secondary font-semibold">1.6 GF / 1.4 GA</span>
+<h2 id="pred-away-name" class="mt-2 font-headline-sm text-headline-sm text-on-surface leading-tight">Chelsea</h2>
+<span id="pred-away-stats" class="font-data-caption text-data-caption text-secondary font-semibold">1.6 GF / 1.4 GA</span>
 <!-- Form Badges -->
-<div class="flex items-center gap-1 mt-1.5">
+<div id="pred-away-form" class="flex items-center gap-1 mt-1.5">
 <span class="w-4 h-4 rounded-full bg-error text-on-error font-label-caps text-[9px] flex items-center justify-center font-black">L</span>
 <span class="w-4 h-4 rounded-full bg-tertiary-container text-on-tertiary-container font-label-caps text-[9px] flex items-center justify-center font-black">W</span>
 <span class="w-4 h-4 rounded-full bg-surface-variant text-on-surface font-label-caps text-[9px] flex items-center justify-center font-black">D</span>
@@ -126,15 +126,15 @@
 </div>
 <div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-tertiary/15 text-tertiary font-label-caps text-label-caps font-bold">
 <span class="material-symbols-outlined text-[13px]">verified</span>
-<span>88% Conf</span>
+<span id="pred-pick-conf">88% Conf</span>
 </div>
 </div>
 <!-- Recommendation Title -->
 <div class="mt-space-md">
-<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold tracking-tight">
+<h3 id="pred-pick-title" class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-extrabold tracking-tight">
           Arsenal Win &amp; Over 1.5 Goals
         </h3>
-<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">
+<p id="pred-pick-desc" class="font-body-sm text-body-sm text-on-surface-variant mt-1">
           London Derby efficiency index favors Arsenal high-tempo transitions against Chelsea's mid-block vulnerability.
         </p>
 </div>
@@ -142,17 +142,17 @@
 <div class="mt-space-md grid grid-cols-3 gap-space-xs p-space-sm rounded-xl bg-surface-container-lowest">
 <div class="flex flex-col items-center justify-center p-1.5">
 <span class="font-data-caption text-data-caption text-on-surface-variant uppercase font-semibold">Best Market</span>
-<span class="font-odds-num-lg text-odds-num-lg text-primary mt-0.5">2.05</span>
+<span id="pred-pick-odds" class="font-odds-num-lg text-odds-num-lg text-primary mt-0.5">2.05</span>
 <span class="font-data-caption text-[9px] text-outline">SportyBet</span>
 </div>
 <div class="flex flex-col items-center justify-center p-1.5">
 <span class="font-data-caption text-data-caption text-on-surface-variant uppercase font-semibold">Fair Model</span>
-<span class="font-odds-num-lg text-odds-num-lg text-on-surface mt-0.5">1.78</span>
+<span id="pred-pick-fair" class="font-odds-num-lg text-odds-num-lg text-on-surface mt-0.5">1.78</span>
 <span class="font-data-caption text-[9px] text-tertiary font-medium">56.2% True Implied</span>
 </div>
 <div class="flex flex-col items-center justify-center p-1.5">
 <span class="font-data-caption text-data-caption text-tertiary uppercase font-semibold">Calculated Edge</span>
-<span class="font-odds-num-lg text-odds-num-lg text-tertiary mt-0.5">+15.2%</span>
+<span id="pred-pick-edge" class="font-odds-num-lg text-odds-num-lg text-tertiary mt-0.5">+15.2%</span>
 <span class="font-data-caption text-[9px] text-tertiary font-bold">Positive EV</span>
 </div>
 </div>
@@ -160,7 +160,7 @@
 <div class="mt-space-md flex items-center gap-space-sm">
 <button class="flex-1 h-11 px-space-md rounded-xl bg-primary-container text-on-primary font-headline-sm text-[14px] font-bold flex items-center justify-center gap-2 active:scale-[0.98] transition-transform shadow-md" id="addHeroToSlip" type="button">
 <span class="material-symbols-outlined text-[18px]">add_circle</span>
-<span>Add Leg @ 2.05</span>
+<span id="pred-leg-btn-label">Add Leg @ 2.05</span>
 </button>
 <button class="h-11 px-space-md rounded-xl bg-surface-container-high text-on-surface font-label-caps text-label-caps flex items-center justify-center gap-1.5 active:scale-[0.98] transition-all" id="copyBookingCodeBtn" onclick="const t = this; t.querySelector('.label-txt').innerText='Copied!'; setTimeout(() =&gt; t.querySelector('.label-txt').innerText='Copy Code', 2000);" type="button">
 <span class="material-symbols-outlined text-[16px] text-secondary">content_copy</span>
@@ -182,20 +182,20 @@
 <!-- Segmented Probability Bar -->
 <div class="flex flex-col gap-1.5">
 <div class="flex items-center justify-between font-label-caps text-label-caps">
-<span class="text-primary font-bold">ARSENAL (58%)</span>
-<span class="text-outline font-bold">DRAW (24%)</span>
-<span class="text-secondary font-bold">CHELSEA (18%)</span>
+<span id="pred-poisson-lbl-home" class="text-primary font-bold">ARSENAL (58%)</span>
+<span id="pred-poisson-lbl-draw" class="text-outline font-bold">DRAW (24%)</span>
+<span id="pred-poisson-lbl-away" class="text-secondary font-bold">CHELSEA (18%)</span>
 </div>
 <div class="w-full h-3 rounded-full bg-surface-container-high overflow-hidden flex">
-<div class="h-full bg-primary-container transition-all" style="width: 58%"></div>
-<div class="h-full bg-outline-variant transition-all" style="width: 24%"></div>
-<div class="h-full bg-secondary-container transition-all" style="width: 18%"></div>
+<div id="pred-poisson-bar-home" class="h-full bg-primary-container transition-all" style="width: 58%"></div>
+<div id="pred-poisson-bar-draw" class="h-full bg-outline-variant transition-all" style="width: 24%"></div>
+<div id="pred-poisson-bar-away" class="h-full bg-secondary-container transition-all" style="width: 18%"></div>
 </div>
 </div>
 <!-- Top Score Matrix Chips -->
 <div class="flex flex-col gap-2">
 <span class="font-label-caps text-label-caps text-on-surface-variant uppercase tracking-wider">Most Probable Exact Scores</span>
-<div class="grid grid-cols-4 gap-space-xs">
+<div id="pred-scores-grid" class="grid grid-cols-4 gap-space-xs">
 <div class="p-2 rounded-xl bg-surface-container flex flex-col items-center text-center">
 <span class="font-headline-sm text-[15px] font-bold text-on-surface">2 - 1</span>
 <span class="font-odds-num-md text-data-caption text-tertiary font-bold mt-0.5">14.2%</span>
@@ -228,28 +228,29 @@
 <span class="material-symbols-outlined text-tertiary text-[20px]">analytics</span>
 <h3 class="font-headline-sm text-headline-sm text-on-surface">Expected Goals (xG) Telemetry</h3>
 </div>
-<span class="font-data-caption text-data-caption text-primary font-bold">+1.06 xG Delta</span>
+<span id="pred-xg-delta" class="font-data-caption text-data-caption text-primary font-bold">+1.06 xG Delta</span>
 </div>
 <!-- xG Gauge Comparison Cards -->
 <div class="grid grid-cols-2 gap-space-sm">
 <div class="p-space-sm rounded-xl bg-surface-container flex flex-col">
 <div class="flex items-center justify-between text-on-surface-variant">
-<span class="font-label-caps text-label-caps uppercase">Arsenal xG</span>
+<span id="pred-xg-lbl-home" class="font-label-caps text-label-caps uppercase">Arsenal xG</span>
 <span class="font-data-caption text-tertiary">Home Dominance</span>
 </div>
-<span class="font-display-hero text-headline-lg font-bold text-primary mt-1">2.18</span>
+<span id="pred-xg-val-home" class="font-display-hero text-headline-lg font-bold text-primary mt-1">2.18</span>
 <div class="w-full bg-surface-container-high h-1.5 rounded-full mt-2 overflow-hidden">
-<div class="bg-primary h-full rounded-full" style="width: 72%"></div>
+<div id="pred-xg-bar-home" class="bg-primary h-full rounded-full" style="width: 72%"></div>
 </div>
 </div>
 <div class="p-space-sm rounded-xl bg-surface-container flex flex-col">
 <div class="flex items-center justify-between text-on-surface-variant">
-<span class="font-label-caps text-label-caps uppercase">Chelsea xG</span>
+<span id="pred-xg-lbl-away" class="font-label-caps text-label-caps uppercase">Chelsea xG</span>
 <span class="font-data-caption text-outline">Away Pressure</span>
 </div>
-<span class="font-display-hero text-headline-lg font-bold text-secondary mt-1">1.12</span>
+<span id="pred-xg-val-away" class="font-display-hero text-headline-lg font-bold text-secondary mt-1">1.12</span>
 <div class="w-full bg-surface-container-high h-1.5 rounded-full mt-2 overflow-hidden">
-<div class="bg-secondary h-full rounded-full" style="width: 37%"></div>
+<div id="pred-xg-bar-away" class="bg-secondary h-full rounded-full" style="width: 37%"></div>
+</div>
 </div>
 </div>
 </div>

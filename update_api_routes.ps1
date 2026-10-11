@@ -36,7 +36,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/auth/register', [AuthController::class, 'register']);
 
         Route::middleware('auth:api')->group(function () {
-            Route::get('/user/profile', [AuthController::class, 'profile']);
+            Route::get('/user/profile', [MobileApiController::class, 'userProfile']);
             Route::post('/user/logout', [AuthController::class, 'logout']);
             Route::post('/converter/convert', [MobileApiController::class, 'convertCode']);
             Route::post('/predictions/{id}/save', [PredictionController::class, 'save']);
@@ -123,4 +123,4 @@ Route::prefix('v1')->group(function () {
 $filePath = 'C:\xampp\htdocs\finesseodds\routes\api.php'
 $utf8NoBom = New-Object System.Text.UTF8Encoding($false)
 [System.IO.File]::WriteAllText($filePath, $content, $utf8NoBom)
-Write-Host "routes/api.php successfully written without BOM (telegram/status removed)."
+Write-Host "routes/api.php updated with MobileApiController::userProfile."

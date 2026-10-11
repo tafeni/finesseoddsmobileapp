@@ -62,17 +62,45 @@
 </div>
 </div>
 </section>
+<!-- VIP Active Subscriber Banner (Visible when user has active VIP) -->
+<section id="vip-active-banner" class="hidden rounded-2xl bg-gradient-to-r from-amber-500/20 via-primary-container/20 to-tertiary/20 border border-amber-400/40 p-space-md shadow-xl flex flex-col gap-3">
+  <div class="flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <span class="w-8 h-8 rounded-lg bg-amber-400/20 text-amber-300 flex items-center justify-center font-bold text-lg">👑</span>
+      <div>
+        <span class="font-label-caps text-label-caps text-amber-400 uppercase font-bold tracking-widest block">Active Subscriber</span>
+        <h2 id="vip-active-plan-name" class="font-headline-md text-headline-md text-white font-black leading-tight">VIP Pro Mathematical Pass</h2>
+      </div>
+    </div>
+    <span class="px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-label-caps text-[10px] font-black uppercase tracking-wider border border-emerald-500/30">Active</span>
+  </div>
+  <div class="grid grid-cols-2 gap-2 text-xs text-on-surface-variant">
+    <div class="p-2 rounded-lg bg-surface-container-high/70 flex flex-col">
+      <span class="text-[9px] uppercase font-bold text-outline">Cycle / Renewal</span>
+      <span id="vip-active-renewal" class="text-white font-semibold">Renews Oct 2027</span>
+    </div>
+    <div class="p-2 rounded-lg bg-surface-container-high/70 flex flex-col">
+      <span class="text-[9px] uppercase font-bold text-outline">Slip Conversions</span>
+      <span id="vip-active-quota" class="text-tertiary font-bold">Unlimited Instant</span>
+    </div>
+  </div>
+</section>
+
 <!-- Plan Billing Toggle Segmented Pill -->
 <section class="space-y-space-md">
 <div class="p-1 rounded-full bg-surface-container-high flex relative items-center shadow-md">
+<button class="flex-1 py-2 rounded-full text-center transition-all duration-200 z-10 flex items-center justify-center gap-1 text-on-surface-variant" id="toggle-weekly" type="button">
+<span class="font-headline-sm text-[12px] tracking-tight">Weekly</span>
+<span class="font-odds-num-md text-[12px] opacity-80">$6.99</span>
+</button>
 <button class="flex-1 py-2 rounded-full text-center transition-all duration-200 z-10 flex items-center justify-center gap-1 text-on-surface-variant" id="toggle-monthly" type="button">
-<span class="font-headline-sm text-[13px] tracking-tight">Monthly</span>
-<span class="font-odds-num-md text-[13px] opacity-80">$19.99</span>
+<span class="font-headline-sm text-[12px] tracking-tight">Monthly</span>
+<span class="font-odds-num-md text-[12px] opacity-80">$19.99</span>
 </button>
 <button class="flex-1 py-2 rounded-full text-center transition-all duration-200 z-10 flex items-center justify-center gap-1 bg-primary text-on-primary shadow-md" id="toggle-annual" type="button">
-<span class="font-headline-sm text-[13px] tracking-tight">Annual</span>
-<span class="font-odds-num-md text-[13px]">$149.99</span>
-<span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary font-label-caps text-[9px] font-black uppercase tracking-wider ml-1">Save 40%</span>
+<span class="font-headline-sm text-[12px] tracking-tight">Annual</span>
+<span class="font-odds-num-md text-[12px]">$149.99</span>
+<span class="px-1.5 py-0.5 rounded-full bg-secondary-container text-on-secondary font-label-caps text-[9px] font-black uppercase tracking-wider ml-0.5">Save 40%</span>
 </button>
 </div>
 <!-- Tier Breakdown Card -->

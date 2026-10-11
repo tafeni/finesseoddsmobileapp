@@ -207,78 +207,84 @@
 <span class="material-symbols-outlined text-[16px] text-on-surface-variant absolute right-1.5 top-2 pointer-events-none">expand_more</span>
 </div>
 </div>
-<!-- Quick Account Registration Form -->
-<section class="flex flex-col gap-space-md pt-space-xs">
+<!-- Quick Account Authentication Form -->
+<section class="flex flex-col gap-space-md pt-space-xs" id="auth-section">
+<div class="flex items-center justify-between">
 <div>
-<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold">3. Create Secure Profile</h2>
-<p class="font-data-caption text-data-caption text-on-surface-variant uppercase tracking-wider">Fast one-tap authentication or standard credentials</p>
+<h2 class="font-headline-sm text-headline-sm text-on-surface font-bold" id="auth-title">3. Account Authentication</h2>
+<p class="font-data-caption text-data-caption text-on-surface-variant uppercase tracking-wider" id="auth-subtitle">Sign in or create your secure bettor profile</p>
 </div>
-<!-- Social 1-Tap Auth Buttons -->
-<div class="grid grid-cols-2 gap-space-sm">
-<button class="flex items-center justify-center gap-space-xs py-2.5 px-space-sm rounded-xl bg-surface-container-high hover:bg-surface-bright active:scale-[0.98] transition-all" type="button">
-<svg class="w-4 h-4 shrink-0" viewbox="0 0 24 24">
-<path d="M12 5c1.6 0 3 .6 4.1 1.6l3.1-3.1C17.3 1.8 14.8 1 12 1 7.5 1 3.7 3.6 1.9 7.4l3.7 2.9C6.5 7.4 9 5 12 5z" fill="#EA4335"></path>
-<path d="M23.5 12.3c0-.8-.1-1.7-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.8z" fill="#4285F4"></path>
-<path d="M5.6 14.7c-.2-.7-.4-1.5-.4-2.7 0-1.2.2-2 .4-2.7L1.9 6.4C.7 8.8 0 10.8 0 12c0 1.2.7 3.2 1.9 5.6l3.7-2.9z" fill="#FBBC05"></path>
-<path d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.8-2.5 1.2-4.3 1.2-3 0-5.5-2.4-6.4-5.3L1.9 16C3.7 19.8 7.5 23 12 23z" fill="#34A853"></path>
-</svg>
-<span class="font-headline-sm text-[13px] font-semibold text-on-surface">Google</span>
+<!-- Quick Mode Switcher -->
+<div class="flex p-0.5 rounded-xl bg-surface-container-high border border-outline/20">
+<button type="button" id="tab-login" class="px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-[11px] font-bold uppercase transition-all shadow-sm">Sign In</button>
+<button type="button" id="tab-register" class="px-2.5 py-1 rounded-lg text-on-surface-variant font-headline-sm text-[11px] font-bold uppercase transition-all hover:text-on-surface">Register</button>
+</div>
+</div>
+
+<!-- Fast 1-Tap Demo Fill Helper -->
+<div class="flex items-center justify-between px-3 py-2 rounded-xl bg-cyan-950/40 border border-cyan-500/30 text-cyan-300">
+<span class="text-[11px] font-medium flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-cyan-400">verified_user</span>
+<span>Test account ready in DB</span>
+</span>
+<button type="button" id="btn-fill-demo" class="px-2.5 py-1 rounded-lg bg-cyan-500/20 hover:bg-cyan-500/30 text-cyan-200 text-[10px] font-bold uppercase tracking-wider border border-cyan-500/40 active:scale-95 transition-all">
+⚡ 1-Tap Demo User
 </button>
-<button class="flex items-center justify-center gap-space-xs py-2.5 px-space-sm rounded-xl bg-surface-container-high hover:bg-surface-bright active:scale-[0.98] transition-all" type="button">
-<svg class="w-4 h-4 shrink-0 fill-current text-on-surface" viewbox="0 0 24 24">
-<path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.38c.62-.75 1.04-1.8 0.93-2.85-.9.04-1.99.6-2.63 1.35-.57.66-1.06 1.73-.93 2.76 1 .08 2.01-.51 2.63-1.26z"></path>
-</svg>
-<span class="font-headline-sm text-[13px] font-semibold text-on-surface">Apple</span>
-</button>
 </div>
-<!-- Subtle Divider -->
-<div class="relative flex items-center justify-center my-0.5">
-<div class="w-full h-px bg-surface-container-highest"></div>
-<span class="font-data-caption text-data-caption uppercase text-on-surface-variant bg-surface px-3 absolute font-medium tracking-widest">or email sign-up</span>
+
+<!-- Error Alert Banner (Hidden by default) -->
+<div id="auth-error-box" class="hidden p-3 rounded-xl bg-rose-950/60 border border-rose-500/40 text-rose-300 text-xs flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-rose-400 shrink-0">error</span>
+<span id="auth-error-text" class="leading-tight"></span>
 </div>
+
 <!-- Input Fields Form -->
 <div class="flex flex-col gap-space-sm">
+<!-- Name Input (Shown for Register only) -->
+<div class="flex flex-col gap-1 hidden" id="field-name-container">
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Full Name</label>
+<div class="flex items-center px-space-md py-3 rounded-xl bg-surface-container-low focus-within:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-[20px] text-on-surface-variant mr-space-sm shrink-0">badge</span>
+<input id="auth-name" class="w-full bg-transparent text-on-surface font-body-md placeholder:text-outline text-body-md focus:outline-none" placeholder="Tope Afeni" type="text"/>
+</div>
+</div>
+
 <!-- Email Input -->
 <div class="flex flex-col gap-1">
-<label class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Work / Primary Email</label>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Email Address</label>
 <div class="flex items-center px-space-md py-3 rounded-xl bg-surface-container-low focus-within:bg-surface-container-high transition-colors">
 <span class="material-symbols-outlined text-[20px] text-on-surface-variant mr-space-sm shrink-0">mail</span>
-<input class="w-full bg-transparent text-on-surface font-body-md placeholder:text-outline text-body-md focus:outline-none" placeholder="bettor@finesseodds.com" type="email"/>
+<input id="auth-email" class="w-full bg-transparent text-on-surface font-body-md placeholder:text-outline text-body-md focus:outline-none" placeholder="user@finesseodds.com" type="email" value="user@finesseodds.com"/>
 </div>
 </div>
+
 <!-- Password Input -->
 <div class="flex flex-col gap-1">
-<label class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Set Password</label>
+<label class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Password</label>
 <div class="flex items-center px-space-md py-3 rounded-xl bg-surface-container-low focus-within:bg-surface-container-high transition-colors">
 <span class="material-symbols-outlined text-[20px] text-on-surface-variant mr-space-sm shrink-0">lock</span>
-<input class="w-full bg-transparent text-on-surface font-body-md placeholder:text-outline text-body-md focus:outline-none" id="pwd-field" placeholder="Minimum 8 characters" type="password"/>
+<input id="auth-password" class="w-full bg-transparent text-on-surface font-body-md placeholder:text-outline text-body-md focus:outline-none" placeholder="Enter password" type="password" value="password123"/>
 <button class="text-on-surface-variant hover:text-on-surface ml-space-sm transition-colors" id="pwd-toggle" type="button">
 <span class="material-symbols-outlined text-[20px]" id="pwd-icon">visibility</span>
 </button>
 </div>
-<!-- Password Dynamic Strength Pill Bars -->
-<div class="flex items-center gap-1.5 mt-1 px-1">
-<div class="h-1 flex-1 rounded-full bg-tertiary"></div>
-<div class="h-1 flex-1 rounded-full bg-tertiary"></div>
-<div class="h-1 flex-1 rounded-full bg-tertiary"></div>
-<div class="h-1 flex-1 rounded-full bg-surface-container-highest"></div>
-<span class="font-data-caption text-[10px] text-tertiary font-bold ml-1">Strong</span>
 </div>
-</div>
-<!-- Optional Referral Code Input -->
-<div class="flex flex-col gap-1 pt-1">
+
+<!-- Referral Code Input (Register only) -->
+<div class="flex flex-col gap-1 hidden" id="field-referral-container">
 <div class="flex items-center justify-between">
 <label class="font-label-caps text-label-caps uppercase text-on-surface-variant tracking-wider">Referral / VIP Promo Code</label>
 <span class="font-data-caption text-data-caption text-secondary font-semibold">+5 Free Codes</span>
 </div>
 <div class="flex items-center px-space-md py-2.5 rounded-xl bg-surface-container-low focus-within:bg-surface-container-high transition-colors">
 <span class="material-symbols-outlined text-[20px] text-secondary mr-space-sm shrink-0">confirmation_number</span>
-<input class="w-full bg-transparent text-secondary-fixed font-odds-num-md tracking-wider uppercase text-body-md focus:outline-none font-bold" placeholder="Enter code" type="text" value="VIP-LAUNCH-2025"/>
+<input id="auth-referral" class="w-full bg-transparent text-secondary-fixed font-odds-num-md tracking-wider uppercase text-body-md focus:outline-none font-bold" placeholder="Enter code" type="text" value="VIP-LAUNCH-2025"/>
 <span class="material-symbols-outlined text-tertiary text-[18px]">verified</span>
 </div>
 </div>
 </div>
 </section>
+
 <!-- Trust Guarantees & Safety -->
 <div class="flex items-center justify-around py-space-sm px-space-md rounded-xl bg-surface-container-lowest text-on-surface-variant">
 <div class="flex items-center gap-1.5">
@@ -296,20 +302,18 @@
 <span class="font-data-caption text-[11px] font-semibold">Real-Time Sync</span>
 </div>
 </div>
+
 <!-- Final High-Conversion Action Button & Legal -->
 <div class="flex flex-col gap-space-sm pb-space-lg">
-<button class="relative overflow-hidden w-full py-4 px-space-lg rounded-2xl bg-gradient-to-r from-primary-container via-primary-fixed-dim to-tertiary text-on-primary font-headline-sm text-headline-sm font-extrabold tracking-wide uppercase shadow-[0_0_28px_rgba(0,210,255,0.45)] hover:shadow-[0_0_36px_rgba(0,210,255,0.65)] active:scale-[0.99] transition-all flex items-center justify-center gap-2 group" type="button">
-<span class="material-symbols-outlined text-[24px] group-hover:rotate-12 transition-transform">bolt</span>
-<span>Claim Free VIP Edge &amp; Join</span>
+<button id="btn-auth-submit" class="relative overflow-hidden w-full py-4 px-space-lg rounded-2xl bg-gradient-to-r from-primary-container via-primary-fixed-dim to-tertiary text-on-primary font-headline-sm text-headline-sm font-extrabold tracking-wide uppercase shadow-[0_0_28px_rgba(0,210,255,0.45)] hover:shadow-[0_0_36px_rgba(0,210,255,0.65)] active:scale-[0.99] transition-all flex items-center justify-center gap-2 group cursor-pointer" type="button">
+<span class="material-symbols-outlined text-[24px] group-hover:rotate-12 transition-transform" id="auth-btn-icon">login</span>
+<span id="auth-btn-label">Sign In to FinesseOdds</span>
 </button>
 <!-- Terms & Agreement Note -->
 <p class="font-data-caption text-[11px] leading-tight text-center text-on-surface-variant px-space-sm">
-        By registering, you agree to our 
-        <a class="text-primary underline hover:text-primary-fixed" href="#">Terms of Service</a> 
-        and acknowledge our 
-        <a class="text-primary underline hover:text-primary-fixed" href="#">Privacy Notice</a>. 
-        Odds are computational and subject to fast live market shifts.
-      </p>
+By authenticating, you securely connect to your verified FinesseOdds account.
+Odds are computational and subject to fast live market shifts.
+</p>
 </div>
 </div>
 </div>
@@ -579,9 +583,131 @@
           } else if (t.includes('Copy')) {
             if (window.Android && window.Android.showToast) window.Android.showToast('Booking Code Copied to Clipboard');
           }
-        } catch(e) {}
+        } catch (e) {}
       });
     });
+
+    // ==========================================
+    // ONBOARDING AUTHENTICATION INTERACTION
+    // ==========================================
+    let authMode = 'login'; // 'login' or 'register'
+    const tabLogin = document.getElementById('tab-login');
+    const tabRegister = document.getElementById('tab-register');
+    const fieldNameContainer = document.getElementById('field-name-container');
+    const fieldReferralContainer = document.getElementById('field-referral-container');
+    const authBtnLabel = document.getElementById('auth-btn-label');
+    const authBtnIcon = document.getElementById('auth-btn-icon');
+    const btnSubmit = document.getElementById('btn-auth-submit');
+    const btnFillDemo = document.getElementById('btn-fill-demo');
+    const errorBox = document.getElementById('auth-error-box');
+    const errorText = document.getElementById('auth-error-text');
+
+    function setAuthMode(mode) {
+      authMode = mode;
+      if (mode === 'login') {
+        tabLogin.className = 'px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-[11px] font-bold uppercase transition-all shadow-sm';
+        tabRegister.className = 'px-2.5 py-1 rounded-lg text-on-surface-variant font-headline-sm text-[11px] font-bold uppercase transition-all hover:text-on-surface';
+        fieldNameContainer.classList.add('hidden');
+        fieldReferralContainer.classList.add('hidden');
+        authBtnLabel.textContent = 'Sign In to FinesseOdds';
+        authBtnIcon.textContent = 'login';
+      } else {
+        tabRegister.className = 'px-2.5 py-1 rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-[11px] font-bold uppercase transition-all shadow-sm';
+        tabLogin.className = 'px-2.5 py-1 rounded-lg text-on-surface-variant font-headline-sm text-[11px] font-bold uppercase transition-all hover:text-on-surface';
+        fieldNameContainer.classList.remove('hidden');
+        fieldReferralContainer.classList.remove('hidden');
+        authBtnLabel.textContent = 'Create Account & Claim VIP Starter';
+        authBtnIcon.textContent = 'how_to_reg';
+      }
+      errorBox.classList.add('hidden');
+    }
+
+    if (tabLogin && tabRegister) {
+      tabLogin.onclick = () => setAuthMode('login');
+      tabRegister.onclick = () => setAuthMode('register');
+    }
+
+    if (btnFillDemo) {
+      btnFillDemo.onclick = () => {
+        setAuthMode('login');
+        document.getElementById('auth-email').value = 'user@finesseodds.com';
+        document.getElementById('auth-password').value = 'password123';
+        if (window.Android && window.Android.showToast) {
+          window.Android.showToast('Filled: Tope Afeni (user@finesseodds.com)');
+        }
+      };
+    }
+
+    // Toggle password visibility
+    const pwdToggle = document.getElementById('pwd-toggle');
+    const pwdField = document.getElementById('auth-password');
+    const pwdIcon = document.getElementById('pwd-icon');
+    if (pwdToggle && pwdField) {
+      pwdToggle.onclick = () => {
+        const isPwd = pwdField.type === 'password';
+        pwdField.type = isPwd ? 'text' : 'password';
+        pwdIcon.textContent = isPwd ? 'visibility_off' : 'visibility';
+      };
+    }
+
+    if (btnSubmit) {
+      btnSubmit.onclick = async () => {
+        const email = (document.getElementById('auth-email').value || '').trim();
+        const password = (document.getElementById('auth-password').value || '').trim();
+        const name = (document.getElementById('auth-name')?.value || '').trim();
+
+        if (!email || !password) {
+          errorText.textContent = 'Please enter both email and password.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        if (authMode === 'register' && !name) {
+          errorText.textContent = 'Please enter your full name.';
+          errorBox.classList.remove('hidden');
+          return;
+        }
+
+        errorBox.classList.add('hidden');
+        btnSubmit.disabled = true;
+        authBtnLabel.textContent = authMode === 'login' ? 'Signing In...' : 'Registering...';
+        authBtnIcon.textContent = 'hourglass_top';
+
+        try {
+          if (!window.FinesseApi) {
+            throw new Error('Finesse API connector initializing, please try again.');
+          }
+
+          let authData;
+          if (authMode === 'login') {
+            authData = await window.FinesseApi.loginUser(email, password);
+          } else {
+            authData = await window.FinesseApi.registerUser(name, email, password);
+          }
+
+          const userName = authData?.user?.name || 'Bettor';
+          if (window.Android && window.Android.showToast) {
+            window.Android.showToast('Welcome back, ' + userName + '!');
+          }
+          if (window.Android && window.Android.vibrate) {
+            window.Android.vibrate(40);
+          }
+
+          setTimeout(() => {
+            window.location.href = 'match_radar.html';
+          }, 300);
+        } catch (err) {
+          btnSubmit.disabled = false;
+          authBtnLabel.textContent = authMode === 'login' ? 'Sign In to FinesseOdds' : 'Create Account & Claim VIP Starter';
+          authBtnIcon.textContent = authMode === 'login' ? 'login' : 'how_to_reg';
+          errorText.textContent = err.message || 'Authentication failed. Please verify credentials.';
+          errorBox.classList.remove('hidden');
+          if (window.Android && window.Android.showToast) {
+            window.Android.showToast('Error: ' + (err.message || 'Authentication failed'));
+          }
+        }
+      };
+    }
   });
 </script>
 

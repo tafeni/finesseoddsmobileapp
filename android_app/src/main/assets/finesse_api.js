@@ -373,9 +373,222 @@
         if (data.data.user) {
           localStorage.setItem('finesse_user', JSON.stringify(data.data.user));
         }
+        await this.fetchUserProfile();
+        this.updateUserHeaderUI();
         return data.data;
       }
       throw new Error(data.message || (data.errors ? JSON.stringify(data.errors) : 'Login failed'));
+    },
+
+    // Register user via secured mobile handshake
+    registerUser: async function(name, email, password) {
+      var endpoint = 'api/v1/mobile/auth/register';
+      var res = await fetch(this.baseUrl + '/' + endpoint, {
+        method: 'POST',
+        headers: this.getHeaders(endpoint, true),
+        body: JSON.stringify({
+          name: name,
+          email: email,
+          password: password,
+          password_confirmation: password
+        })
+      });
+      var data = await res.json();
+      if (data && data.success && data.data && data.data.token) {
+        this.token = data.data.token;
+        localStorage.setItem('finesse_token', this.token);
+        if (data.data.user) {
+          localStorage.setItem('finesse_user', JSON.stringify(data.data.user));
+        }
+        await this.fetchUserProfile();
+        this.updateUserHeaderUI();
+        return data.data;
+      }
+      var errMsg = data.message || (data.errors ? Object.values(data.errors).flat().join(', ') : 'Registration failed');
+      throw new Error(errMsg);
+    },
+
+    // Fetch live user profile with subscription details
+    fetchUserProfile: async function() {
+      if (!this.token) return null;
+      try {
+        var endpoint = 'api/v1/mobile/user/profile';
+        var res = await fetch(this.baseUrl + '/' + endpoint, {
+          headers: this.getHeaders(endpoint, false)
+        });
+        if (res.ok) {
+          var data = await res.json();
+          if (data && data.success && data.data && data.data.user) {
+            localStorage.setItem('finesse_user', JSON.stringify(data.data.user));
+            return data.data.user;
+          }
+        }
+      } catch (e) {
+        console.warn('[FinesseAPI] Profile fetch error:', e);
+      }
+      return this.getCurrentUser();
+    },
+
+    // Logout user
+    logoutUser: function() {
+      this.token = null;
+      localStorage.removeItem('finesse_token');
+      localStorage.removeItem('finesse_user');
+      this.updateUserHeaderUI();
+      if (window.Android && window.Android.showToast) {
+        window.Android.showToast('Logged out of FinesseOdds');
+      }
+      setTimeout(function() {
+        window.location.href = 'onboarding.html';
+      }, 300);
+    },
+
+    // Get currently cached user
+    getCurrentUser: function() {
+      try {
+        var raw = localStorage.getItem('finesse_user');
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    },
+
+    // Synchronize top header to reflect user status
+    updateUserHeaderUI: function() {
+      var self = this;
+      var user = this.getCurrentUser();
+      
+      // Update header avatar / initial
+      var avatarBtn = document.getElementById('header-user-btn') ||
+                      document.querySelector('header .w-9.h-9.rounded-full') ||
+                      document.querySelector('header .w-8.h-8.rounded-full.bg-primary') ||
+                      document.querySelector('header .w-8.h-8.rounded-full') ||
+                      Array.from(document.querySelectorAll('header button, header a')).find(function(b) {
+                        return (b.innerText || '').includes('person');
+                      });
+      
+      if (avatarBtn) {
+        if (user && user.name) {
+          var initials = user.name.split(' ').map(function(n) { return n[0]; }).join('').substring(0, 2).toUpperCase();
+          avatarBtn.innerHTML = '<span class="font-bold text-xs text-white bg-gradient-to-tr from-cyan-500 to-blue-600 w-full h-full rounded-full flex items-center justify-center shadow-md">' + initials + '</span>';
+        } else {
+          avatarBtn.innerHTML = '<span class="material-symbols-outlined text-[20px] text-slate-300">person</span>';
+        }
+        avatarBtn.onclick = function(e) {
+          e.stopPropagation();
+          self.showUserProfileModal();
+        };
+      }
+
+      // Update VIP badge / wallet pill in header
+      var badgeContainers = document.querySelectorAll('header div.rounded-full');
+      badgeContainers.forEach(function(pill) {
+        if ((pill.innerText || '').includes('VIP PRO') || (pill.innerText || '').includes('$2,450') || (pill.innerText || '').includes('FREE')) {
+          if (user) {
+            var planBadge = user.plan_badge || (user.is_paid ? 'VIP PRO' : 'FREE EXPLORER');
+            var quota = user.conversions_remaining !== undefined ? user.conversions_remaining + ' SLIPS' : '25 SLIPS';
+            pill.innerHTML = `
+              <span class="material-symbols-outlined text-[15px] ${user.is_paid ? 'text-amber-400' : 'text-cyan-400'}">military_tech</span>
+              <span class="font-data-caption text-[10px] font-extrabold ${user.is_paid ? 'text-amber-400' : 'text-cyan-400'} uppercase">${planBadge}</span>
+              <span class="font-odds-num-md text-[12px] font-black text-white ml-1 font-mono">${quota}</span>
+            `;
+            pill.onclick = function(e) {
+              e.stopPropagation();
+              self.showUserProfileModal();
+            };
+          }
+        }
+      });
+    },
+
+    // Render interactive User Profile Bottom Sheet
+    showUserProfileModal: function() {
+      var self = this;
+      var user = this.getCurrentUser();
+      if (!user) {
+        window.location.href = 'onboarding.html';
+        return;
+      }
+
+      var existing = document.getElementById('finesse-profile-modal');
+      if (existing) { existing.remove(); return; }
+
+      var initials = (user.name || 'User').split(' ').map(function(n) { return n[0]; }).join('').substring(0, 2).toUpperCase();
+      var planBadge = user.plan_badge || (user.is_paid ? 'VIP PRO' : 'FREE EXPLORER');
+      var isVip = user.is_paid || user.role === 'admin';
+      var quota = user.conversions_remaining !== undefined ? user.conversions_remaining : '25';
+
+      var modal = document.createElement('div');
+      modal.id = 'finesse-profile-modal';
+      modal.className = 'fixed inset-0 z-50 flex items-end justify-center bg-black/80 backdrop-blur-md animate-fadeIn';
+      modal.innerHTML = `
+        <div class="w-full max-w-md rounded-t-3xl bg-[#0D1527] border-t border-cyan-500/30 p-6 text-slate-100 shadow-2xl flex flex-col gap-4 animate-slideUp">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cyan-400"></span>
+              <h3 class="font-black text-xs uppercase tracking-widest text-cyan-400">FinesseOdds Bettor Profile</h3>
+            </div>
+            <button id="closeProfileModal" class="text-slate-400 hover:text-white p-1 text-xl leading-none">&times;</button>
+          </div>
+
+          <div class="flex items-center gap-4 p-4 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-inner">
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-cyan-500 via-blue-600 to-indigo-600 text-white font-black text-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 shrink-0">
+              ${initials}
+            </div>
+            <div class="flex flex-col min-w-0 flex-1">
+              <div class="flex items-center gap-2">
+                <span class="font-bold text-base text-white truncate">${user.name}</span>
+                <span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase ${isVip ? 'bg-amber-400/20 text-amber-300 border border-amber-400/30' : 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'}">${planBadge}</span>
+              </div>
+              <span class="text-xs text-slate-400 truncate">${user.email}</span>
+              <span class="text-[10px] text-slate-500 mt-0.5">Member since ${user.joined_at || 'October 2026'}</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Conversion Quota</span>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="text-xl font-black text-cyan-400 font-mono">${quota}</span>
+                <span class="text-[11px] text-slate-400">slips left</span>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col">
+              <span class="text-[10px] uppercase font-bold text-slate-400">Poisson Model Tier</span>
+              <div class="flex items-baseline gap-1 mt-1">
+                <span class="text-xl font-black text-emerald-400 font-mono">${isVip ? 'v4.8 Elite' : 'Standard'}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2.5 pt-1">
+            <button id="btnUpgradeVip" class="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-500 via-amber-400 to-yellow-500 hover:from-amber-400 hover:to-yellow-400 text-black font-black text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-lg shadow-amber-500/20 active:scale-95 transition-transform">
+              <span class="material-symbols-outlined text-[18px]">workspace_premium</span>
+              <span>${isVip ? 'Manage VIP Membership' : 'Upgrade to VIP Pro'}</span>
+            </button>
+
+            <button id="btnLogoutUser" class="w-full py-3 px-4 rounded-xl bg-slate-800 hover:bg-slate-700 text-rose-400 font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 border border-rose-500/20 active:scale-95 transition-transform">
+              <span class="material-symbols-outlined text-[18px]">logout</span>
+              <span>Sign Out</span>
+            </button>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      document.getElementById('closeProfileModal').onclick = function() { modal.remove(); };
+      modal.onclick = function(e) { if (e.target === modal) modal.remove(); };
+
+      document.getElementById('btnUpgradeVip').onclick = function() {
+        modal.remove();
+        window.location.href = 'vip_pro.html';
+      };
+
+      document.getElementById('btnLogoutUser').onclick = function() {
+        modal.remove();
+        self.logoutUser();
+      };
     },
 
     // Render / update floating or header connection badge
@@ -496,8 +709,13 @@
     // Initialize on page load
     init: async function() {
       this.updateStatusBadge();
+      this.updateUserHeaderUI();
       var connected = await this.ping();
       if (connected) {
+        if (this.token) {
+          await this.fetchUserProfile();
+          this.updateUserHeaderUI();
+        }
         await this.fetchBookmakers();
       }
       await this.fetchFeedData();
@@ -516,6 +734,8 @@
         this.renderAiPredictions();
       } else if (page.indexOf('match_prediction') !== -1) {
         this.renderMatchPrediction();
+      } else if (page.indexOf('vip_pro') !== -1) {
+        this.renderVipPro();
       }
     },
 
@@ -963,33 +1183,391 @@
       var feed = this.feedData;
       if (!feed) return;
 
-      var motd = feed.featured_match;
-      if (!motd) return;
-
-      // Read match_id query parameter if present
+      var match = feed.featured_match || {};
       var urlParams = new URLSearchParams(window.location.search);
       var matchId = urlParams.get('match_id');
+
+      // Check if match_id was passed and find matching fixture
       if (matchId && feed.radar_fixtures) {
         var found = feed.radar_fixtures.find(function(f) { return String(f.id) === String(matchId); });
         if (found) {
-          motd = {
+          match = {
+            id: found.id,
             home_team: found.home_team,
             away_team: found.away_team,
-            league: { name: found.league_name, matchday: 'Live Fixture' },
-            odds: { '1': found.market_odds, 'X': 3.40, '2': 3.80 },
-            probabilities: { home: found.edge_pct, draw: 25, away: 25 },
-            recommendation: { pick: found.market_name, confidence: found.edge_pct, best_market_odds: found.market_odds }
+            league: { name: found.league_name, matchday: found.is_live ? 'Live Match' : 'Matchday 29' },
+            venue: found.home_team + ' Arena',
+            kickoff_countdown: found.status_label || 'Today',
+            odds: {
+              '1': found.market_odds || 1.85,
+              'X': 3.40,
+              '2': 3.90
+            },
+            probabilities: {
+              home: found.edge_pct || 65,
+              draw: 22,
+              away: 13
+            },
+            recommendation: {
+              pick: found.market_name || (found.home_team + ' Win'),
+              confidence: found.edge_pct || 78,
+              fair_odds: ((found.market_odds || 1.85) * 0.88).toFixed(2),
+              best_market_odds: (found.market_odds || 1.85),
+              rationale: 'FinesseOdds Poisson algorithmic engine detects +EV disparity for ' + found.home_team + ' vs ' + found.away_team + ' in ' + found.league_name + '.'
+            }
           };
         }
       }
 
-      // Dynamically sync match title in header
-      var titleEls = document.querySelectorAll('header span, h2, h3');
-      titleEls.forEach(function(el) {
-        if ((el.innerText || '').includes('Arsenal vs Chelsea') && motd.home_team !== 'Arsenal') {
-          el.innerText = motd.home_team + ' vs ' + motd.away_team;
+      var homeTeam = match.home_team || 'Arsenal';
+      var awayTeam = match.away_team || 'Chelsea';
+      var homeAbbr = homeTeam.substring(0, 3).toUpperCase();
+      var awayAbbr = awayTeam.substring(0, 3).toUpperCase();
+      var leagueName = (match.league && match.league.name) ? match.league.name : 'Premier League';
+      var leagueSub = leagueName + ' • ' + ((match.league && match.league.matchday) ? match.league.matchday : 'Matchday 29');
+
+      var setElText = function(id, text) {
+        var el = document.getElementById(id);
+        if (el) el.textContent = text;
+      };
+
+      // A. Header & Context Meta
+      setElText('pred-breadcrumb', homeTeam + ' vs ' + awayTeam);
+      setElText('pred-kickoff-countdown', match.kickoff_countdown || 'Kickoff Soon');
+      var venueEl = document.getElementById('pred-venue');
+      if (venueEl) {
+        venueEl.innerHTML = '<span class="material-symbols-outlined text-[13px] text-primary">stadium</span>' + (match.venue || 'Stadium');
+      }
+      setElText('pred-league-icon', leagueName.substring(0, 2).toUpperCase());
+      setElText('pred-league-sub', leagueSub);
+
+      // B. Face-Off Teams
+      setElText('pred-home-abbr', homeAbbr);
+      setElText('pred-home-name', homeTeam);
+      setElText('pred-home-stats', match.home_score !== null && match.home_score !== undefined ? ('Score: ' + match.home_score + ' Goals') : '2.4 GF / 0.8 GA');
+
+      setElText('pred-away-abbr', awayAbbr);
+      setElText('pred-away-name', awayTeam);
+      setElText('pred-away-stats', match.away_score !== null && match.away_score !== undefined ? ('Score: ' + match.away_score + ' Goals') : '1.6 GF / 1.4 GA');
+
+      // C. Primary AI Pick Card
+      var rec = match.recommendation || {};
+      var bestOdds = rec.best_market_odds ? Number(rec.best_market_odds) : 2.05;
+      var conf = rec.confidence || 88;
+      var fairOdds = rec.fair_odds ? Number(rec.fair_odds) : Number((bestOdds * 0.86).toFixed(2));
+      var edgeVal = '+' + ((bestOdds - fairOdds) / fairOdds * 100).toFixed(1) + '%';
+
+      setElText('pred-pick-conf', conf + '% Conf');
+      setElText('pred-pick-title', rec.pick || (homeTeam + ' Win & Over 1.5 Goals'));
+      setElText('pred-pick-desc', rec.rationale || ('Mathematical Poisson value edge favors ' + homeTeam + ' against ' + awayTeam + '.'));
+      setElText('pred-pick-odds', bestOdds.toFixed(2));
+      setElText('pred-pick-fair', fairOdds.toFixed(2));
+      setElText('pred-pick-edge', edgeVal);
+      setElText('pred-leg-btn-label', 'Add Leg @ ' + bestOdds.toFixed(2));
+
+      // D. Poisson Distribution & Simulation
+      var probs = match.probabilities || { home: 58, draw: 24, away: 18 };
+      var pHome = probs.home || 58;
+      var pDraw = probs.draw || 24;
+      var pAway = probs.away || 18;
+
+      setElText('pred-poisson-lbl-home', homeAbbr + ' (' + pHome + '%)');
+      setElText('pred-poisson-lbl-draw', 'DRAW (' + pDraw + '%)');
+      setElText('pred-poisson-lbl-away', awayAbbr + ' (' + pAway + '%)');
+
+      var barH = document.getElementById('pred-poisson-bar-home');
+      var barD = document.getElementById('pred-poisson-bar-draw');
+      var barA = document.getElementById('pred-poisson-bar-away');
+      if (barH) barH.style.width = pHome + '%';
+      if (barD) barD.style.width = pDraw + '%';
+      if (barA) barA.style.width = pAway + '%';
+
+      // E. xG Telemetry
+      var xgH = Number((1.4 + (pHome / 100) * 1.2).toFixed(2));
+      var xgA = Number((0.7 + (pAway / 100) * 0.8).toFixed(2));
+      var delta = (xgH - xgA).toFixed(2);
+
+      setElText('pred-xg-delta', (delta >= 0 ? '+' : '') + delta + ' xG Delta');
+      setElText('pred-xg-lbl-home', homeTeam + ' xG');
+      setElText('pred-xg-val-home', xgH.toFixed(2));
+      var xgBarH = document.getElementById('pred-xg-bar-home');
+      if (xgBarH) xgBarH.style.width = Math.min(Math.round(xgH / 3.0 * 100), 100) + '%';
+
+      setElText('pred-xg-lbl-away', awayTeam + ' xG');
+      setElText('pred-xg-val-away', xgA.toFixed(2));
+      var xgBarA = document.getElementById('pred-xg-bar-away');
+      if (xgBarA) xgBarA.style.width = Math.min(Math.round(xgA / 3.0 * 100), 100) + '%';
+
+      // F. Alternative Markets
+      setElText('pred-alt-odd-over', (bestOdds * 0.84).toFixed(2));
+      setElText('pred-alt-odd-btts', (bestOdds * 0.88).toFixed(2));
+      setElText('pred-alt-odd-hcp', (bestOdds * 0.95).toFixed(2));
+      setElText('pred-alt-hcp-title', homeTeam + ' Asian Hcp -0.75');
+
+      // G. Sticky Bottom Dock
+      var dockOdds = document.getElementById('dockOdds');
+      var dockEdge = document.getElementById('dockEdge');
+      if (dockOdds) dockOdds.textContent = bestOdds.toFixed(2);
+      if (dockEdge) dockEdge.textContent = edgeVal + ' EV';
+
+      // H. Interactive CTAs
+      var btnAdd = document.getElementById('addHeroToSlip');
+      var btnDock = document.getElementById('dockActionBtn');
+      var handleAddSlip = function() {
+        if (window.Android && window.Android.vibrate) window.Android.vibrate(35);
+        if (window.Android && window.Android.showToast) {
+          window.Android.showToast('Added ' + (rec.pick || (homeTeam + ' Win')) + ' @ ' + bestOdds.toFixed(2) + ' to Betslip');
         }
+      };
+      if (btnAdd) btnAdd.onclick = handleAddSlip;
+      if (btnDock) btnDock.onclick = handleAddSlip;
+
+      var btnCopy = document.getElementById('copyBookingCodeBtn');
+      if (btnCopy) {
+        btnCopy.onclick = function() {
+          var code = 'FO-' + Math.random().toString(36).substring(2, 7).toUpperCase();
+          if (window.Android && window.Android.copyToClipboard) {
+            window.Android.copyToClipboard(code);
+          }
+          if (window.Android && window.Android.showToast) {
+            window.Android.showToast('Copied Booking Code: ' + code + ' (' + homeTeam + ' vs ' + awayTeam + ')');
+          }
+        };
+      }
+    },
+
+    // Upgrade subscription via mobile secured gateway
+    upgradeSubscription: async function(cycle, promoCode) {
+      if (!this.token) {
+        throw new Error('Please sign in to upgrade your subscription.');
+      }
+      var endpoint = 'api/v1/mobile/subscription/upgrade';
+      var res = await fetch(this.baseUrl + '/' + endpoint, {
+        method: 'POST',
+        headers: this.getHeaders(endpoint, true),
+        body: JSON.stringify({
+          billing_cycle: cycle || 'annual',
+          plan_slug: 'pro',
+          promo_code: promoCode || ''
+        })
       });
+      var data = await res.json();
+      if (data && data.success && data.data && data.data.user) {
+        localStorage.setItem('finesse_user', JSON.stringify(data.data.user));
+        this.updateUserHeaderUI();
+        return data.data.user;
+      }
+      var msg = data.message || (data.errors ? JSON.stringify(data.errors) : 'Upgrade failed');
+      throw new Error(msg);
+    },
+
+    // Render VIP Pro screen dynamically
+    renderVipPro: function() {
+      var self = this;
+      var user = this.getCurrentUser();
+      var activeBanner = document.getElementById('vip-active-banner');
+      var ctaBtn = document.getElementById('cta-button');
+      var isVip = user && (user.is_paid || user.role === 'admin' || (user.plan_badge && user.plan_badge.includes('VIP')));
+
+      if (isVip) {
+        if (activeBanner) {
+          activeBanner.classList.remove('hidden');
+          var planNameEl = document.getElementById('vip-active-plan-name');
+          if (planNameEl) planNameEl.textContent = user.plan_name || 'VIP Pro Mathematical Pass';
+          var renewalEl = document.getElementById('vip-active-renewal');
+          if (renewalEl) renewalEl.textContent = 'Active • ' + (user.subscription_ends_at || 'Renews Oct 2027');
+        }
+        if (ctaBtn) {
+          ctaBtn.innerHTML = `
+            <span class="font-headline-sm text-headline-sm font-extrabold tracking-wide uppercase">Manage VIP Membership</span>
+            <span class="font-data-caption text-data-caption opacity-90 mt-0.5 font-medium">All Poisson Models & Arbitrage Scanner Active</span>
+          `;
+          ctaBtn.onclick = function() {
+            self.showUserProfileModal();
+          };
+        }
+      } else {
+        if (activeBanner) activeBanner.classList.add('hidden');
+      }
+
+      var currentCycle = 'annual';
+      var btnWeekly = document.getElementById('toggle-weekly');
+      var btnMonthly = document.getElementById('toggle-monthly');
+      var btnAnnual = document.getElementById('toggle-annual');
+      var priceDisplay = document.getElementById('price-display');
+      var cadenceDisplay = document.getElementById('cadence-display');
+
+      function updateCycle(cycle) {
+        currentCycle = cycle;
+        var activeClass = 'flex-1 py-2 rounded-full text-center transition-all duration-200 z-10 flex items-center justify-center gap-1 bg-primary text-on-primary shadow-md';
+        var inactiveClass = 'flex-1 py-2 rounded-full text-center transition-all duration-200 z-10 flex items-center justify-center gap-1 text-on-surface-variant';
+        
+        if (btnWeekly) btnWeekly.className = cycle === 'weekly' ? activeClass : inactiveClass;
+        if (btnMonthly) btnMonthly.className = cycle === 'monthly' ? activeClass : inactiveClass;
+        if (btnAnnual) btnAnnual.className = cycle === 'annual' ? activeClass : inactiveClass;
+
+        if (cycle === 'weekly') {
+          if (priceDisplay) priceDisplay.textContent = '$6.99';
+          if (cadenceDisplay) cadenceDisplay.textContent = '/week, flexible pass';
+          if (ctaBtn && !isVip) {
+            ctaBtn.querySelector('span:first-child').textContent = 'Activate 7-Day VIP Weekly Pass';
+            ctaBtn.querySelector('span:last-child').textContent = '$6.99/week. 1-tap cancel anytime.';
+          }
+        } else if (cycle === 'monthly') {
+          if (priceDisplay) priceDisplay.textContent = '$19.99';
+          if (cadenceDisplay) cadenceDisplay.textContent = '/month, billed monthly';
+          if (ctaBtn && !isVip) {
+            ctaBtn.querySelector('span:first-child').textContent = 'Start 7-Day VIP Pro Free Trial';
+            ctaBtn.querySelector('span:last-child').textContent = '$0 today, then $19.99/month. 1-tap cancel anytime.';
+          }
+        } else {
+          if (priceDisplay) priceDisplay.textContent = '$12.49';
+          if (cadenceDisplay) cadenceDisplay.textContent = '/month, billed $149.99 annually';
+          if (ctaBtn && !isVip) {
+            ctaBtn.querySelector('span:first-child').textContent = 'Start 7-Day VIP Pro Free Trial';
+            ctaBtn.querySelector('span:last-child').textContent = '$0 today, then $149.99/year. 1-tap cancel anytime.';
+          }
+        }
+      }
+
+      if (btnWeekly) btnWeekly.onclick = function() { updateCycle('weekly'); };
+      if (btnMonthly) btnMonthly.onclick = function() { updateCycle('monthly'); };
+      if (btnAnnual) btnAnnual.onclick = function() { updateCycle('annual'); };
+
+      // Promo Code Validation
+      var promoInput = document.getElementById('promo-input');
+      var promoApplyBtn = document.getElementById('promo-apply-btn');
+      var promoStatus = document.getElementById('promo-status');
+      var appliedPromo = null;
+
+      if (promoApplyBtn && promoInput) {
+        promoApplyBtn.onclick = function() {
+          var code = (promoInput.value || '').trim().toUpperCase();
+          if (!code) return;
+          if (code === 'VIPPRO' || code === 'FINESSE100') {
+            appliedPromo = code;
+            promoStatus.textContent = 'Code applied: 100% Free VIP Pro Access Activated!';
+            promoStatus.className = 'font-data-caption text-data-caption text-emerald-400 font-bold block';
+            promoApplyBtn.textContent = 'Applied';
+            promoApplyBtn.className = 'px-space-md py-2 rounded-lg bg-emerald-500 text-black font-headline-sm text-[14px]';
+            if (priceDisplay) priceDisplay.textContent = '$0.00';
+            if (cadenceDisplay) cadenceDisplay.textContent = '/lifetime free trial';
+          } else if (code === 'VIPFINESSE50') {
+            appliedPromo = code;
+            promoStatus.textContent = 'Code applied: 50% Lifetime VIP Discount!';
+            promoStatus.className = 'font-data-caption text-data-caption text-emerald-400 font-bold block';
+            promoApplyBtn.textContent = 'Applied';
+            promoApplyBtn.className = 'px-space-md py-2 rounded-lg bg-emerald-500 text-black font-headline-sm text-[14px]';
+            if (priceDisplay) priceDisplay.textContent = '$6.24';
+          } else {
+            promoStatus.textContent = 'Invalid promo code. Use VIPPRO or VIPFINESSE50';
+            promoStatus.className = 'font-data-caption text-data-caption text-rose-400 font-bold block';
+          }
+        };
+      }
+
+      if (ctaBtn && !isVip) {
+        ctaBtn.onclick = function() {
+          self.openVipCheckoutModal(currentCycle, appliedPromo);
+        };
+      }
+    },
+
+    // VIP Pro In-App Checkout Modal
+    openVipCheckoutModal: function(cycle, promo) {
+      var self = this;
+      var user = this.getCurrentUser();
+      if (!user) {
+        if (window.Android && window.Android.showToast) {
+          window.Android.showToast('Please sign in to activate VIP Pro');
+        }
+        window.location.href = 'onboarding.html';
+        return;
+      }
+
+      var existing = document.getElementById('vip-checkout-modal');
+      if (existing) existing.remove();
+
+      var price = cycle === 'weekly' ? '$6.99' : (cycle === 'monthly' ? '$19.99' : '$149.99');
+      var modal = document.createElement('div');
+      modal.id = 'vip-checkout-modal';
+      modal.className = 'fixed inset-0 z-50 flex items-end justify-center bg-black/80 backdrop-blur-md animate-fadeIn';
+      modal.innerHTML = `
+        <div class="w-full max-w-md rounded-t-3xl bg-[#0D1527] border-t border-cyan-500/30 p-6 text-slate-100 shadow-2xl flex flex-col gap-4 animate-slideUp">
+          <div class="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-amber-400 text-xl">workspace_premium</span>
+              <h3 class="font-black text-sm uppercase tracking-wider text-cyan-400">VIP Pro Subscription Pass</h3>
+            </div>
+            <button id="closeVipModal" class="text-slate-400 hover:text-white p-1 text-2xl leading-none">&times;</button>
+          </div>
+
+          <div class="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 flex flex-col gap-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-white text-base">Plan: ${cycle.toUpperCase()} PASS</span>
+              <span class="font-extrabold text-amber-400 text-lg">${promo ? '$0.00' : price}</span>
+            </div>
+            <div class="text-xs text-slate-400">Account: <span class="text-white font-medium">${user.email}</span></div>
+            <div class="text-xs text-emerald-400 flex items-center gap-1">
+              <span class="material-symbols-outlined text-[14px]">check_circle</span>
+              <span>7-Day Free Trial Included • Cancel Anytime</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-2.5 pt-1">
+            <button id="btnInstantTrial" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-cyan-500 via-blue-500 to-indigo-600 text-white font-black text-sm uppercase tracking-wider shadow-lg shadow-cyan-500/25 active:scale-95 transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-lg">bolt</span>
+              <span>Activate 7-Day VIP Pro Trial ($0.00)</span>
+            </button>
+            <button id="btnWebCheckout" class="w-full py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs uppercase tracking-wider border border-slate-700 active:scale-95 transition-all flex items-center justify-center gap-2">
+              <span class="material-symbols-outlined text-base">credit_card</span>
+              <span>Pay via Web Billing Portal (Paystack/Card)</span>
+            </button>
+          </div>
+
+          <div class="text-[10px] text-slate-400 text-center flex items-center justify-center gap-1 pt-1">
+            <span class="material-symbols-outlined text-[12px] text-emerald-400">verified_user</span>
+            <span>Bank-grade 256-bit encryption • Instant mobile synchronization</span>
+          </div>
+        </div>
+      `;
+
+      document.body.appendChild(modal);
+
+      modal.querySelector('#closeVipModal').onclick = function() { modal.remove(); };
+
+      modal.querySelector('#btnInstantTrial').onclick = async function() {
+        var btn = this;
+        btn.textContent = 'Activating VIP Pro...';
+        btn.disabled = true;
+        try {
+          var updated = await self.upgradeSubscription('trial', promo);
+          modal.remove();
+          if (window.Android && window.Android.vibrate) window.Android.vibrate(50);
+          if (window.Android && window.Android.showToast) {
+            window.Android.showToast('🎉 VIP Pro Activated! All Mathematical Models Unlocked!');
+          }
+          self.renderVipPro();
+        } catch (err) {
+          btn.disabled = false;
+          btn.textContent = 'Activate 7-Day VIP Pro Trial ($0.00)';
+          if (window.Android && window.Android.showToast) {
+            window.Android.showToast('Activation error: ' + err.message);
+          }
+        }
+      };
+
+      modal.querySelector('#btnWebCheckout').onclick = function() {
+        modal.remove();
+        var checkoutUrl = self.baseUrl + '/pricing';
+        if (window.Android && typeof window.Android.loadWebUrl === 'function') {
+          window.Android.loadWebUrl(checkoutUrl);
+        } else if (window.Android && typeof window.Android.openExternalUrl === 'function') {
+          window.Android.openExternalUrl(checkoutUrl);
+        } else {
+          window.location.href = checkoutUrl;
+        }
+      };
     }
   };
 
