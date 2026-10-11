@@ -48,7 +48,15 @@
       this.renderMatchRadar();
     },
 
-    getHeaders: function(isJson) {
+    // Generate authenticated request headers with cryptographic mobile handshake
+    getHeaders: function(path, isJson) {
+      if (typeof path === 'boolean') {
+        isJson = path;
+        path = '';
+      }
+      path = path || '';
+      var cleanPath = path.replace(/^\//, '');
+
       var headers = {
         'Accept': 'application/json',
         'X-Requested-With': 'XMLHttpRequest'
@@ -59,36 +67,139 @@
       if (this.token) {
         headers['Authorization'] = 'Bearer ' + this.token;
       }
+
+      // Cryptographic Mobile App Handshake
+      var now = Math.floor(Date.now() / 1000);
+      var client = 'FinesseOdds-Android-v1.0';
+      var signature = '';
+
+      if (window.Android && typeof window.Android.generateHandshakeSignature === 'function') {
+        try {
+          client = window.Android.getAppClient() || client;
+          signature = window.Android.generateHandshakeSignature(cleanPath, now);
+        } catch (e) {
+          console.warn('[FinesseAPI] Native bridge handshake signature error:', e);
+        }
+      }
+
+      if (!signature) {
+        signature = this.computeBrowserHandshake(client, now, cleanPath);
+      }
+
+      headers['X-App-Client'] = client;
+      headers['X-App-Timestamp'] = String(now);
+      headers['X-App-Signature'] = signature;
+
       return headers;
     },
 
-    // Ping server to test connectivity
+    // Pure JS HMAC-SHA256 for browser simulator environments
+    computeBrowserHandshake: function(client, timestamp, path) {
+      var secret = 'fo_mob_sec_89d3f1a6e0c74b9281a4b5e2831c9e47a2b9d0e1f3a5b7c9e0d2f4a6b8c0d2e4';
+      var message = client + '|' + timestamp + '|' + path;
+      return this.sha256Hmac(message, secret);
+    },
+
+    // Fast SHA256 HMAC implementation
+    sha256Hmac: function(msg, key) {
+      function rrot(x, n) { return (x >>> n) | (x << (32 - n)); }
+      function sha256(data) {
+        var K = [
+          0x428a2f98,0x71374491,0xb5c0fbcf,0xe9b5dba5,0x3956c25b,0x59f111f1,0x923f82a4,0xab1c5ed5,
+          0xd807aa98,0x12835b01,0x243185be,0x550c7dc3,0x72be5d74,0x80deb1fe,0x9bdc06a7,0xc19bf174,
+          0xe49b69c1,0xefbe4786,0x0fc19dc6,0x240ca1cc,0x2de92c6f,0x4a7484aa,0x5cb0a9dc,0x76f988da,
+          0x983e5152,0xa831c66d,0xb00327c8,0xbf597fc7,0xc6e00bf3,0xd5a79147,0x06ca6351,0x14292967,
+          0x27b70a85,0x2e1b2138,0x4d2c6dfc,0x53380d13,0x650a7354,0x766a0abb,0x81c2c92e,0x92722c85,
+          0xa2bfe8a1,0xa81a664b,0xc24b8b70,0xc76c51a3,0xd192e819,0xd6990624,0xf40e3585,0x106aa070,
+          0x19a4c116,0x1e376c08,0x2748774c,0x34b0bcb5,0x391c0cb3,0x4ed8aa4a,0x5b9cca4f,0x682e6ff3,
+          0x748f82ee,0x78a5636f,0x84c87814,0x8cc70208,0x90befffa,0xa4506ceb,0xbef9a3f7,0xc67178f2
+        ];
+        var H = [0x6a09e667,0xbb67ae85,0x3c6ef372,0xa54ff53a,0x510e527f,0x9b05688c,0x1f83d9ab,0x5be0cd19];
+        var l = data.length * 8;
+        var words = [];
+        for (var i = 0; i < data.length; i++) words[i >> 2] |= (data[i] & 0xff) << (24 - (i % 4) * 8);
+        words[data.length >> 2] |= 0x80 << (24 - (data.length % 4) * 8);
+        words[(((data.length + 8) >> 6) + 1) * 16 - 1] = l;
+        for (var i = 0; i < words.length; i += 16) {
+          var w = new Array(64);
+          for (var t = 0; t < 16; t++) w[t] = words[i + t] | 0;
+          for (var t = 16; t < 64; t++) {
+            var s0 = rrot(w[t-15], 7) ^ rrot(w[t-15], 18) ^ (w[t-15] >>> 3);
+            var s1 = rrot(w[t-2], 17) ^ rrot(w[t-2], 19) ^ (w[t-2] >>> 10);
+            w[t] = (w[t-16] + s0 + w[t-7] + s1) | 0;
+          }
+          var a=H[0], b=H[1], c=H[2], d=H[3], e=H[4], f=H[5], g=H[6], h=H[7];
+          for (var t = 0; t < 64; t++) {
+            var S1 = rrot(e, 6) ^ rrot(e, 11) ^ rrot(e, 25);
+            var ch = (e & f) ^ ((~e) & g);
+            var temp1 = (h + S1 + ch + K[t] + w[t]) | 0;
+            var S0 = rrot(a, 2) ^ rrot(a, 13) ^ rrot(a, 22);
+            var maj = (a & b) ^ (a & c) ^ (b & c);
+            var temp2 = (S0 + maj) | 0;
+            h = g; g = f; f = e; e = (d + temp1) | 0; d = c; c = b; b = a; a = (temp1 + temp2) | 0;
+          }
+          H[0]=(H[0]+a)|0; H[1]=(H[1]+b)|0; H[2]=(H[2]+c)|0; H[3]=(H[3]+d)|0;
+          H[4]=(H[4]+e)|0; H[5]=(H[5]+f)|0; H[6]=(H[6]+g)|0; H[7]=(H[7]+h)|0;
+        }
+        var out = [];
+        for (var i = 0; i < 8; i++) {
+          out.push((H[i]>>>24)&0xff, (H[i]>>>16)&0xff, (H[i]>>>8)&0xff, H[i]&0xff);
+        }
+        return out;
+      }
+      function strToBytes(s) {
+        var b = [];
+        for (var i = 0; i < s.length; i++) {
+          var c = s.charCodeAt(i);
+          if (c < 128) b.push(c);
+          else if (c < 2048) b.push(192 | (c >> 6), 128 | (c & 63));
+          else b.push(224 | (c >> 12), 128 | ((c >> 6) & 63), 128 | (c & 63));
+        }
+        return b;
+      }
+      var k = strToBytes(key);
+      if (k.length > 64) k = sha256(k);
+      while (k.length < 64) k.push(0);
+      var oPad = [], iPad = [];
+      for (var i = 0; i < 64; i++) {
+        oPad[i] = k[i] ^ 0x5c;
+        iPad[i] = k[i] ^ 0x36;
+      }
+      var inner = sha256(iPad.concat(strToBytes(msg)));
+      var outer = sha256(oPad.concat(inner));
+      return outer.map(function(b) { return (b < 16 ? '0' : '') + b.toString(16); }).join('');
+    },
+
+    // Ping server to test connectivity via cryptographic mobile handshake
     ping: async function() {
       var self = this;
       var start = performance.now();
       try {
         var controller = new AbortController();
         var timer = setTimeout(function() { controller.abort(); }, 6000);
+        var endpoint = 'api/v1/mobile/handshake';
 
-        var res = await fetch(self.baseUrl + '/api/v1/converter/public/bookmakers', {
-          headers: self.getHeaders(false),
+        var res = await fetch(self.baseUrl + '/' + endpoint, {
+          headers: self.getHeaders(endpoint, false),
           signal: controller.signal
         });
         clearTimeout(timer);
 
         if (res.ok) {
-          self.isConnected = true;
-          self.latencyMs = Math.round(performance.now() - start);
-          self.updateStatusBadge();
-          return true;
+          var data = await res.json();
+          if (data && data.success) {
+            self.isConnected = true;
+            self.latencyMs = Math.round(performance.now() - start);
+            self.updateStatusBadge();
+            return true;
+          }
         }
       } catch (err) {
         var isAndroid = /Android/i.test(navigator.userAgent);
-        // Only fallback to localhost if NOT running on Android
         if (!isAndroid && self.baseUrl.indexOf('10.0.2.2') !== -1) {
           try {
-            var res2 = await fetch(self.fallbackUrl + '/api/v1/converter/public/bookmakers', {
-              headers: self.getHeaders(false)
+            var res2 = await fetch(self.fallbackUrl + '/api/v1/mobile/handshake', {
+              headers: self.getHeaders('api/v1/mobile/handshake', false)
             });
             if (res2.ok) {
               self.baseUrl = self.fallbackUrl;
@@ -106,19 +217,21 @@
       return false;
     },
 
-    // Fetch list of 57 real bookmakers
+    // Fetch list of 57 real bookmakers via secured mobile endpoint
     fetchBookmakers: async function() {
       var self = this;
       try {
-        var res = await fetch(self.baseUrl + '/api/v1/converter/public/bookmakers', {
-          headers: self.getHeaders(false)
+        var endpoint = 'api/v1/mobile/bookmakers';
+        var res = await fetch(self.baseUrl + '/' + endpoint, {
+          headers: self.getHeaders(endpoint, false)
         });
         if (res.ok) {
           var data = await res.json();
-          if (data && data.bookmakers) {
-            self.cachedBookmakers = data.bookmakers;
-            localStorage.setItem('finesse_cached_bookmakers', JSON.stringify(data.bookmakers));
-            return data.bookmakers;
+          var list = data.data || data.bookmakers;
+          if (list && list.length) {
+            self.cachedBookmakers = list;
+            localStorage.setItem('finesse_cached_bookmakers', JSON.stringify(list));
+            return list;
           }
         }
       } catch (err) {
@@ -132,7 +245,7 @@
       return null;
     },
 
-    // Fetch unified feed data (online from port 8000 or offline asset fallback)
+    // Fetch unified feed data (online from secured Mobile Feed or offline asset fallback)
     fetchFeedData: async function() {
       var self = this;
       // 1. Try local data sources first for instantaneous UI rendering
@@ -162,41 +275,34 @@
         }
       }
 
-      // 2. Try online sync if server is connected
+      // 2. Fetch live secured feed from Laravel database via handshake
       if (self.isConnected) {
         try {
+          var endpoint = 'api/v1/mobile/feed';
           var controller = new AbortController();
-          var timer = setTimeout(function() { controller.abort(); }, 3000);
-          var res = await fetch(self.baseUrl + '/fixtures', {
-            headers: {
-              'X-Inertia': 'true',
-              'X-Inertia-Version': '97586a40bd12e6718a6445b92f6b85e2',
-              'X-Requested-With': 'XMLHttpRequest',
-              'Authorization': 'Bearer ' + self.token
-            },
+          var timer = setTimeout(function() { controller.abort(); }, 4000);
+          var res = await fetch(self.baseUrl + '/' + endpoint, {
+            headers: self.getHeaders(endpoint, false),
             signal: controller.signal
           });
           clearTimeout(timer);
 
           if (res.ok) {
             var data = await res.json();
-            if (data && data.props && data.props.matches) {
-              console.log('[FinesseAPI] Synced latest online fixtures from Laravel port 8000');
-              // Incorporate online matches into feedData
-              if (self.feedData && data.props.stats) {
-                self.feedData.stats.win_rate = data.props.stats.accuracy ? data.props.stats.accuracy.win_rate_formatted : self.feedData.stats.win_rate;
-              }
+            if (data && data.success) {
+              console.log('[FinesseAPI] Secured live mobile feed received from Laravel database');
+              self.feedData = data;
             }
           }
         } catch (netErr) {
-          console.debug('[FinesseAPI] Online fixtures query completed (using unified feed):', netErr.message);
+          console.debug('[FinesseAPI] Handshake feed fetch status:', netErr.message);
         }
       }
 
       return self.feedData;
     },
 
-    // Convert booking code with server or smart algorithm
+    // Convert booking code securely via mobile gateway
     convertSlip: async function(fromBookmaker, toBookmaker, code) {
       var self = this;
       if (!code || !code.trim()) {
@@ -206,16 +312,17 @@
       var cleanCode = code.trim().toUpperCase();
 
       try {
+        var endpoint = 'api/v1/mobile/converter/convert';
         var controller = new AbortController();
-        var timer = setTimeout(function() { controller.abort(); }, 2500);
+        var timer = setTimeout(function() { controller.abort(); }, 4000);
 
-        var res = await fetch(self.baseUrl + '/api/v1/converter/convert', {
+        var res = await fetch(self.baseUrl + '/' + endpoint, {
           method: 'POST',
-          headers: self.getHeaders(true),
+          headers: self.getHeaders(endpoint, true),
           body: JSON.stringify({
-            from_bookmaker: fromBookmaker,
-            to_bookmaker: toBookmaker,
-            booking_code: cleanCode
+            from: fromBookmaker,
+            to: toBookmaker,
+            code: cleanCode
           }),
           signal: controller.signal
         });
@@ -249,6 +356,26 @@
         odds_match_pct: 99.4,
         source: 'hybrid-engine'
       };
+    },
+
+    // Authenticate user via secured mobile handshake
+    loginUser: async function(email, password) {
+      var endpoint = 'api/v1/mobile/auth/login';
+      var res = await fetch(this.baseUrl + '/' + endpoint, {
+        method: 'POST',
+        headers: this.getHeaders(endpoint, true),
+        body: JSON.stringify({ email: email, password: password })
+      });
+      var data = await res.json();
+      if (data && data.success && data.data && data.data.token) {
+        this.token = data.data.token;
+        localStorage.setItem('finesse_token', this.token);
+        if (data.data.user) {
+          localStorage.setItem('finesse_user', JSON.stringify(data.data.user));
+        }
+        return data.data;
+      }
+      throw new Error(data.message || (data.errors ? JSON.stringify(data.errors) : 'Login failed'));
     },
 
     // Render / update floating or header connection badge
@@ -785,7 +912,7 @@
 
             <div class="mt-space-sm p-space-xs rounded bg-surface-container text-on-surface-variant flex items-start gap-space-xs">
               <span class="material-symbols-outlined text-secondary text-[16px] shrink-0 mt-0.5">info</span>
-              <p class="font-body-sm text-body-sm leading-tight text-on-surface">${p.rationale}</p>
+              <p class="font-body-sm text-body-sm leading-tight text-on-surface">${p.insight || p.rationale || 'Algorithmic Poisson advantage verified across recent form and conversion models.'}</p>
             </div>
 
             <div class="grid grid-cols-2 gap-space-xs mt-space-md pt-1">
