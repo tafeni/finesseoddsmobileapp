@@ -18,15 +18,15 @@ for (const file of files) {
   if (!fs.existsSync(filePath)) continue;
 
   let content = fs.readFileSync(filePath, 'utf-8');
-  if (!content.includes('finesse_nav.js')) {
-    if (content.includes('</body>')) {
-      content = content.replace('</body>', '<script src="finesse_nav.js"></script>\n</body>');
-    } else {
-      content += '\n<script src="finesse_nav.js"></script>';
+  if (!content.includes('finesse_api.js')) {
+    if (content.includes('finesse_nav.js')) {
+      content = content.replace('<script src="finesse_nav.js"></script>', '<script src="finesse_api.js"></script>\n<script src="finesse_nav.js"></script>');
+    } else if (content.includes('</body>')) {
+      content = content.replace('</body>', '<script src="finesse_api.js"></script>\n<script src="finesse_nav.js"></script>\n</body>');
     }
     fs.writeFileSync(filePath, content, 'utf-8');
-    console.log(`Injected finesse_nav.js into ${file}`);
+    console.log(`Injected finesse_api.js into ${file}`);
   } else {
-    console.log(`Already injected in ${file}`);
+    console.log(`Already injected finesse_api.js in ${file}`);
   }
 }

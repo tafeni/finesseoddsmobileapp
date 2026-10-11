@@ -11,7 +11,7 @@
 <div class="relative w-full overflow-hidden px-margin py-space-sm space-y-space-lg">
 <!-- League Selector Pill Bar -->
 <section class="w-full">
-<div class="flex items-center gap-space-sm overflow-x-auto pb-space-xs no-scrollbar scroll-smooth">
+<div id="radar-leagues-bar" class="flex items-center gap-space-sm overflow-x-auto pb-space-xs no-scrollbar scroll-smooth">
 <button class="group flex items-center gap-1.5 px-space-md py-1.5 rounded-full bg-primary-container text-on-primary-container font-label-caps text-label-caps uppercase transition-all shadow-[0_0_12px_rgba(0,210,255,0.4)] shrink-0" type="button">
 <span class="w-1.5 h-1.5 rounded-full bg-surface animate-ping"></span>
 <span>All Leagues</span>
@@ -52,7 +52,7 @@
 </div>
 <div class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container-lowest/80 text-on-surface">
 <span class="material-symbols-outlined text-[14px] text-primary">timer</span>
-<span class="font-odds-num-md text-data-caption text-primary tracking-wide">02H 45M 12S</span>
+<span id="motd-countdown" class="font-odds-num-md text-data-caption text-primary tracking-wide">02H 45M 12S</span>
 </div>
 </div>
 <!-- Matchup Header Details & Form -->
@@ -61,9 +61,9 @@
 <div class="flex flex-col items-start min-w-0 flex-1">
 <div class="flex items-center gap-space-xs mb-1">
 <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center p-1 shadow-inner">
-<img class="w-6 h-6 object-contain" data-alt="Arsenal FC stylized crest shield with iconic gold cannon symbol on deep cyber red and slate emblem background with glossy finish" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaYkGRhInbQ1aJ3xlckEqBOu4QD_1HGtaZyuqu7wMZsBiuyIoCrR56b5lFkJj1va_b7E9ReRxho0ZDx2alIrYzg_-rXa3iLRK0SRE95Y1HInsnwv3o3QcXV39XhY4BMib8uggWGc9i7JMJ88-o9dwTn2TFuN02RurYt8ZHGh6z_mqRUT8whuaNV1uqI4CMeu9OK6ONf4eiIqZhkC25_aOoRSCGVduubHdNbTCiqJ08ZkBJvlluOe3YwQ"/>
+<img id="motd-home-crest" class="w-6 h-6 object-contain" src="logo.png"/>
 </div>
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Arsenal</span>
+<span id="motd-home-name" class="font-headline-sm text-headline-sm text-on-surface font-bold truncate">Arsenal</span>
 </div>
 <!-- H2H Form Pills -->
 <div class="flex items-center gap-1">
@@ -81,13 +81,13 @@
 <!-- Away Team -->
 <div class="flex flex-col items-end min-w-0 flex-1">
 <div class="flex items-center gap-space-xs mb-1 justify-end">
-<span class="font-headline-sm text-headline-sm text-on-surface font-bold truncate text-right">Chelsea</span>
+<span id="motd-away-name" class="font-headline-sm text-headline-sm text-on-surface font-bold truncate text-right">Chelsea</span>
 <div class="w-8 h-8 rounded-lg bg-surface-container flex items-center justify-center p-1 shadow-inner">
-<img class="w-6 h-6 object-contain" data-alt="Chelsea FC heraldic blue lion club crest badge on sports tech minimalist glass tile with metallic accents" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuEnaruwZA165tzS_OQJf_Ca0Fyrn7YS3IWh3uFs8p5-xOKgxl8_BToKC0xrM2g7cZSp2xHk7NzsLeYR--FIOgFb-Tb9XUsXem0FJYWA5MlDbhvhBGtypQFah9UW2nUEznjuM45yPmR8fdIivv0hrXhHAH6U10bBrrQyIr2netRluODaPnudh6D7EEPB2yJZLFLtHoNvTDFBtP-dI6I98DvrKQIOZr_kx_syrYajBD9pFYBb50WgDTyw"/>
+<img id="motd-away-crest" class="w-6 h-6 object-contain" src="logo.png"/>
 </div>
 </div>
 <!-- H2H Form Pills -->
-<div class="flex items-center gap-1 justify-end">
+<div id="motd-away-form" class="flex items-center gap-1 justify-end">
 <span class="w-4 h-4 rounded text-[9px] font-odds-num-md flex items-center justify-center bg-error-container/40 text-error font-bold">L</span>
 <span class="w-4 h-4 rounded text-[9px] font-odds-num-md flex items-center justify-center bg-tertiary-container/30 text-tertiary font-bold">W</span>
 <span class="w-4 h-4 rounded text-[9px] font-odds-num-md flex items-center justify-center bg-outline-variant text-on-surface font-bold">D</span>
@@ -102,24 +102,24 @@
 <span class="material-symbols-outlined text-primary text-[14px]">psychology</span>
 <span class="font-label-caps text-[10px] text-on-surface-variant tracking-wider uppercase">Poisson Model Distribution</span>
 </div>
-<span class="font-data-caption text-data-caption text-primary">v4.8 High Rigor</span>
+<span id="motd-model-ver" class="font-data-caption text-data-caption text-primary">v4.8 High Rigor</span>
 </div>
 <!-- Segmented Bar -->
 <div class="w-full h-3 rounded-full flex overflow-hidden bg-surface-container-highest">
-<div class="h-full bg-primary-container transition-all duration-500 flex items-center justify-center" style="width: 58%">
-<span class="text-[8px] font-odds-num-md text-on-primary-container font-black">58%</span>
+<div id="motd-bar-home" class="h-full bg-primary-container transition-all duration-500 flex items-center justify-center" style="width: 58%">
+<span id="motd-bar-home-txt" class="text-[8px] font-odds-num-md text-on-primary-container font-black">58%</span>
 </div>
-<div class="h-full bg-outline-variant transition-all duration-500 flex items-center justify-center" style="width: 24%">
-<span class="text-[8px] font-odds-num-md text-on-surface font-black">24%</span>
+<div id="motd-bar-draw" class="h-full bg-outline-variant transition-all duration-500 flex items-center justify-center" style="width: 24%">
+<span id="motd-bar-draw-txt" class="text-[8px] font-odds-num-md text-on-surface font-black">24%</span>
 </div>
-<div class="h-full bg-secondary-container transition-all duration-500 flex items-center justify-center" style="width: 18%">
-<span class="text-[8px] font-odds-num-md text-on-secondary-container font-black">18%</span>
+<div id="motd-bar-away" class="h-full bg-secondary-container transition-all duration-500 flex items-center justify-center" style="width: 18%">
+<span id="motd-bar-away-txt" class="text-[8px] font-odds-num-md text-on-secondary-container font-black">18%</span>
 </div>
 </div>
 <div class="flex justify-between items-center mt-1.5 font-label-caps text-[10px]">
-<span class="text-primary font-semibold">ARS Win (58%)</span>
-<span class="text-on-surface-variant font-semibold">Draw (24%)</span>
-<span class="text-secondary font-semibold">CHE Win (18%)</span>
+<span id="motd-lbl-home" class="text-primary font-semibold">ARS Win (58%)</span>
+<span id="motd-lbl-draw" class="text-on-surface-variant font-semibold">Draw (24%)</span>
+<span id="motd-lbl-away" class="text-secondary font-semibold">CHE Win (18%)</span>
 </div>
 </div>
 <!-- Recommendation Highlight Pill -->
@@ -130,27 +130,27 @@
 </div>
 <div class="flex flex-col min-w-0">
 <span class="font-data-caption text-[10px] uppercase tracking-wider text-tertiary font-bold">AI Core Pick</span>
-<span class="font-body-sm text-body-sm text-on-surface font-semibold truncate">Home Win or Draw (DC 1X)</span>
+<span id="motd-pick-title" class="font-body-sm text-body-sm text-on-surface font-semibold truncate">Home Win or Draw (DC 1X)</span>
 </div>
 </div>
 <div class="flex flex-col items-end shrink-0 pl-2">
 <span class="font-label-caps text-label-caps text-tertiary uppercase">Confidence</span>
-<span class="font-odds-num-md text-odds-num-md text-tertiary">92%</span>
+<span id="motd-pick-conf" class="font-odds-num-md text-odds-num-md text-tertiary">92%</span>
 </div>
 </div>
 <!-- Quick Odds Selection Buttons Row -->
 <div class="relative z-10 grid grid-cols-3 gap-space-xs">
-<button class="group flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm active:scale-95" type="button">
-<span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-on-primary-container uppercase">1 (ARS)</span>
-<span class="font-odds-num-md text-odds-num-md text-on-surface group-hover:text-on-primary-container font-extrabold">1.82</span>
+<button id="motd-btn-1" class="group flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm active:scale-95" type="button">
+<span id="motd-btn-1-label" class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-on-primary-container uppercase">1 (ARS)</span>
+<span id="motd-odd-1" class="font-odds-num-md text-odds-num-md text-on-surface group-hover:text-on-primary-container font-extrabold">1.82</span>
 </button>
-<button class="group flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm active:scale-95" type="button">
+<button id="motd-btn-x" class="group flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm active:scale-95" type="button">
 <span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-on-primary-container uppercase">X (DRAW)</span>
-<span class="font-odds-num-md text-odds-num-md text-on-surface group-hover:text-on-primary-container font-extrabold">3.65</span>
+<span id="motd-odd-x" class="font-odds-num-md text-odds-num-md text-on-surface group-hover:text-on-primary-container font-extrabold">3.65</span>
 </button>
-<button class="group flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm active:scale-95" type="button">
-<span class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-on-primary-container uppercase">2 (CHE)</span>
-<span class="font-odds-num-md text-odds-num-md text-on-surface group-hover:text-on-primary-container font-extrabold">4.20</span>
+<button id="motd-btn-2" class="group flex flex-col items-center justify-center py-2 px-1 rounded-lg bg-surface-container hover:bg-primary-container hover:text-on-primary-container transition-all shadow-sm active:scale-95" type="button">
+<span id="motd-btn-2-label" class="font-label-caps text-[10px] text-on-surface-variant group-hover:text-on-primary-container uppercase">2 (CHE)</span>
+<span id="motd-odd-2" class="font-odds-num-md text-odds-num-md text-on-surface group-hover:text-on-primary-container font-extrabold">4.20</span>
 </button>
 </div>
 </section>
@@ -162,7 +162,7 @@
 <span class="material-symbols-outlined text-[15px]">trending_up</span>
 <span class="font-data-caption text-[10px] uppercase font-bold tracking-tight text-on-surface-variant">AI Hit Rate</span>
 </div>
-<span class="font-odds-num-lg text-odds-num-lg text-on-surface font-extrabold">84.6%</span>
+<span id="stat-hit-rate" class="font-odds-num-lg text-odds-num-lg text-on-surface font-extrabold">54.8%</span>
 <span class="font-data-caption text-[9px] text-tertiary tracking-tight">Today: +4.2%</span>
 </div>
 <!-- EV+ Found -->
@@ -171,7 +171,7 @@
 <span class="material-symbols-outlined text-[15px]">radar</span>
 <span class="font-data-caption text-[10px] uppercase font-bold tracking-tight text-on-surface-variant">EV+ Found</span>
 </div>
-<span class="font-odds-num-lg text-odds-num-lg text-primary font-extrabold">14</span>
+<span id="stat-ev-found" class="font-odds-num-lg text-odds-num-lg text-primary font-extrabold">14</span>
 <span class="font-data-caption text-[9px] text-on-surface-variant tracking-tight">Active value edges</span>
 </div>
 <!-- Slips Converted -->
@@ -180,8 +180,8 @@
 <span class="material-symbols-outlined text-[15px]">bolt</span>
 <span class="font-data-caption text-[10px] uppercase font-bold tracking-tight text-on-surface-variant">Converted</span>
 </div>
-<span class="font-odds-num-lg text-odds-num-lg text-secondary font-extrabold">12.8k</span>
-<span class="font-data-caption text-[9px] text-on-surface-variant tracking-tight">Community slips</span>
+<span id="stat-converted" class="font-odds-num-lg text-odds-num-lg text-secondary font-extrabold">252</span>
+<span class="font-data-caption text-[9px] text-on-surface-variant tracking-tight">Evaluated slips</span>
 </div>
 </section>
 <!-- Today's Live & High-Edge Fixtures Section -->
@@ -191,8 +191,9 @@
 <span class="material-symbols-outlined text-primary text-[20px]">insights</span>
 <span class="font-headline-sm text-headline-sm text-on-surface font-bold tracking-tight">Radar Fixtures</span>
 </div>
-<span class="font-label-caps text-label-caps uppercase text-primary font-semibold tracking-wider">3 Highest EV+</span>
+<span id="radar-count-badge" class="font-label-caps text-label-caps uppercase text-primary font-semibold tracking-wider">3 Highest EV+</span>
 </div>
+<div id="radar-fixtures-wrapper" class="space-y-space-md">
 <!-- Fixture Card 1: Man City vs Liverpool -->
 <div class="relative w-full rounded-xl bg-surface-container/70 p-space-md backdrop-blur-xl shadow-lg transition-all hover:bg-surface-container-high/70">
 <!-- Sub-header -->
@@ -390,6 +391,7 @@
 </button>
 </div>
 </div>
+</div>
 </section>
 <!-- Mini Interactive Toast Alert Indicator (Micro-Interaction Support) -->
 <div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 opacity-0 transform -translate-y-2" id="radarToast">
@@ -433,7 +435,7 @@
 </div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.45)]" data-active-classes="text-primary-container [box-shadow:0_-2px_12px_rgba(0,210,255,0.4)]"><div class="flex justify-around items-center h-20 px-space-xs max-w-lg mx-auto"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 transition-all text-primary-container [box-shadow:0_-2px_12px_rgba(0,210,255,0.4)]" data-path="radar" href="#"><span class="material-symbols-outlined text-[24px]">radar</span><span class="font-label-caps text-label-caps uppercase">Radar</span></a><a class="relative flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 text-on-surface-variant hover:text-on-surface transition-all" data-path="converter" href="#"><span class="absolute -top-1 right-2 px-1 py-0.2 rounded-full bg-secondary-container text-on-secondary font-label-caps text-[9px] font-extrabold uppercase leading-none tracking-normal">LIVE</span><span class="material-symbols-outlined text-[24px]">published_with_changes</span><span class="font-label-caps text-label-caps uppercase">Converter</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 text-on-surface-variant hover:text-on-surface transition-all" data-path="ai-predictions" href="#"><span class="material-symbols-outlined text-[24px]">psychology</span><span class="font-label-caps text-label-caps uppercase">AI Predict</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 text-on-surface-variant hover:text-on-surface transition-all" data-path="vip-pro" href="#"><span class="material-symbols-outlined text-[24px]">hotel_class</span><span class="font-label-caps text-label-caps uppercase">VIP Pro</span></a></div></nav>
 
 <!-- Quick Stitch Screen Switcher Drawer -->
-<div id="stitch-quick-btn" style="position: fixed; top: 72px; right: 12px; z-index: 9999;">
+<div id="stitch-quick-btn" style="position: fixed; bottom: 88px; right: 12px; z-index: 9999;">
   <button onclick="document.getElementById('stitch-modal').classList.remove('hidden')" 
           style="display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 9999px; background: rgba(0, 210, 255, 0.25); border: 1px solid rgba(0, 210, 255, 0.5); color: #a5e7ff; font-family: Outfit, sans-serif; font-size: 11px; font-weight: 700; backdrop-filter: blur(12px); box-shadow: 0 2px 10px rgba(0,0,0,0.6); cursor: pointer;">
     <span>⚡</span>
@@ -619,5 +621,7 @@
   });
 </script>
 
+<script src="live_feed_data.js"></script>
+<script src="finesse_api.js"></script>
 <script src="finesse_nav.js"></script>
 </body></html>

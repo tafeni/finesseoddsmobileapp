@@ -45,10 +45,36 @@ public class WebAppInterface {
     }
 
     @JavascriptInterface
+    public String getHostBaseUrl() {
+        return "http://10.0.2.2:8000";
+    }
+
+    @JavascriptInterface
+    public void loadWebUrl(final String url) {
+        if (context instanceof MainActivity) {
+            ((MainActivity) context).loadUrlOnUiThread(url);
+        }
+    }
+
+    @JavascriptInterface
     public void openExternalUrl(final String url) {
         try {
             Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
             context.startActivity(intent);
         } catch (Exception ignored) {}
+    }
+
+    @JavascriptInterface
+    public String getAssetFile(final String filename) {
+        try {
+            java.io.InputStream is = context.getAssets().open(filename);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            return new String(buffer, "UTF-8");
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

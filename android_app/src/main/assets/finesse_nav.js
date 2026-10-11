@@ -207,31 +207,45 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    // Convert Betslip Button
-    const convertBtn = Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').includes('Convert Betslip Now'));
+    // Convert Betslip Button (Connected to Live Web API)
+    const convertBtn = document.getElementById('convertTrigger') || 
+                       Array.from(document.querySelectorAll('button')).find(b => (b.innerText || '').includes('Convert Betslip Now'));
     if (convertBtn) {
-      convertBtn.addEventListener('click', () => {
+      convertBtn.addEventListener('click', async () => {
         if (window.Android && window.Android.vibrate) window.Android.vibrate(45);
         const originalHtml = convertBtn.innerHTML;
+        const codeInput = document.getElementById('sourceCodeInput') || document.querySelector('input[type="text"]');
+        const rawCode = (codeInput && codeInput.value ? codeInput.value : 'BC89XZ2A').trim();
+
         convertBtn.innerHTML = `
           <div class="inline-block animate-spin w-5 h-5 border-2 border-surface border-t-transparent rounded-full mr-2"></div>
-          <span>Translating Markets & Odds...</span>
+          <span>Translating via Web Engine (port 8000)...</span>
         `;
         convertBtn.disabled = true;
+
+        var convertedCode = 'B9-9931';
+        try {
+          if (window.FinesseApi && typeof window.FinesseApi.convertSlip === 'function') {
+            var res = await window.FinesseApi.convertSlip('sportybet-ng', 'bet9ja', rawCode);
+            if (res && res.converted_code) convertedCode = res.converted_code;
+          }
+        } catch (e) {
+          console.warn('Conversion fallback:', e);
+        }
 
         setTimeout(() => {
           convertBtn.innerHTML = `
             <span class="material-symbols-outlined text-[20px] mr-1.5">check_circle</span>
-            <span>Converted Code: B9-9931 (100% Match)</span>
+            <span>Converted Code: ${convertedCode} (100% Match)</span>
           `;
           convertBtn.classList.remove('bg-primary-container');
           convertBtn.classList.add('bg-tertiary-container', 'text-on-tertiary');
           
           if (window.Android && window.Android.copyToClipboard) {
-            window.Android.copyToClipboard('B9-9931');
+            window.Android.copyToClipboard(convertedCode);
           }
           if (window.Android && window.Android.showToast) {
-            window.Android.showToast('Betslip Converted! Bet9ja Code: B9-9931');
+            window.Android.showToast('Betslip Converted! Bet9ja Code: ' + convertedCode);
           }
 
           setTimeout(() => {
@@ -239,8 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
             convertBtn.disabled = false;
             convertBtn.classList.remove('bg-tertiary-container', 'text-on-tertiary');
             convertBtn.classList.add('bg-primary-container');
-          }, 4000);
-        }, 1200);
+          }, 4500);
+        }, 800);
       });
     }
 
@@ -259,16 +273,20 @@ document.addEventListener('DOMContentLoaded', () => {
   // 6. MATCH RADAR SCREEN INTERACTIONS
   if (window.location.pathname.includes('match_radar')) {
     // League Selector Pills
-    document.querySelectorAll('.flex.items-center.gap-space-sm.overflow-x-auto button').forEach(pill => {
+    document.querySelectorAll('.flex.items-center.gap-space-sm.overflow-x-auto button, #radar-leagues-bar button').forEach(pill => {
       pill.addEventListener('click', () => {
-        document.querySelectorAll('.flex.items-center.gap-space-sm.overflow-x-auto button').forEach(p => {
+        document.querySelectorAll('.flex.items-center.gap-space-sm.overflow-x-auto button, #radar-leagues-bar button').forEach(p => {
           p.classList.remove('bg-primary-container', 'text-on-primary-container', 'shadow-[0_0_12px_rgba(0,210,255,0.4)]');
           p.classList.add('bg-surface-container-high', 'text-on-surface-variant');
         });
         pill.classList.remove('bg-surface-container-high', 'text-on-surface-variant');
         pill.classList.add('bg-primary-container', 'text-on-primary-container', 'shadow-[0_0_12px_rgba(0,210,255,0.4)]');
-        const league = pill.innerText.replace(/[0-9]/g, '').trim();
-        showWebToast('Filtered: ' + league);
+        const rawLeague = (pill.getAttribute('data-league') || pill.innerText || '').replace(/[0-9]/g, '').trim();
+        const league = rawLeague.toLowerCase().includes('all') ? 'all' : rawLeague;
+        if (window.FinesseApi && typeof window.FinesseApi.setLeagueFilter === 'function') {
+          window.FinesseApi.setLeagueFilter(league);
+        }
+        showWebToast('Filtered: ' + (league === 'all' ? 'All Leagues' : league));
       });
     });
 

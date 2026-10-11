@@ -27,7 +27,7 @@
 <span class="font-label-caps text-label-caps text-on-surface-variant uppercase">Poisson Model ROI</span>
 </div>
 <div class="flex items-baseline gap-space-xs mt-0.5">
-<span class="font-odds-num-lg text-odds-num-lg text-tertiary">+24.8%</span>
+<span id="ai-roi-val" class="font-odds-num-lg text-odds-num-lg text-tertiary">+24.8%</span>
 <span class="font-data-caption text-data-caption text-on-surface-variant">this month</span>
 </div>
 </div>
@@ -44,36 +44,36 @@
 <path d="M 0 24 Q 20 22, 35 18 T 65 14 T 85 8 T 115 3" stroke="#69f6b9" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path>
 <circle cx="115" cy="3" fill="#69f6b9" r="3"></circle>
 </svg>
-<span class="font-data-caption text-data-caption text-tertiary font-semibold mt-0.5">+42u (78.2% Hit Rate)</span>
+<span id="ai-roi-sub" class="font-data-caption text-data-caption text-tertiary font-semibold mt-0.5">+42u (54.8% Hit Rate)</span>
 </div>
 </div>
 </div>
 <!-- Filter Chips (Horizontal Scrollable) -->
-<div class="flex items-center gap-space-xs overflow-x-auto py-1 no-scrollbar -mx-margin px-margin">
-<button class="shrink-0 px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-caps text-label-caps uppercase transition-all shadow-sm" type="button">
+<div id="ai-filter-chips" class="flex items-center gap-space-xs overflow-x-auto py-1 no-scrollbar -mx-margin px-margin">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-caps text-label-caps uppercase transition-all shadow-sm" type="button" data-market="all">
         All Markets
       </button>
-<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all flex items-center gap-1" type="button">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all flex items-center gap-1" type="button" data-market="high_conf">
 <span class="material-symbols-outlined text-[14px] text-tertiary">verified</span>
         High Conf (&gt;85%)
       </button>
-<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all flex items-center gap-1" type="button">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all flex items-center gap-1" type="button" data-market="value">
 <span class="material-symbols-outlined text-[14px] text-secondary">local_fire_department</span>
         Value Bets (+EV)
       </button>
-<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all" type="button">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all" type="button" data-market="Over/Under">
         Over/Under
       </button>
-<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all" type="button">
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all" type="button" data-market="BTTS">
         BTTS
       </button>
-<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all" type="button">
-        Double Chance
+<button class="shrink-0 px-3 py-1.5 rounded-full bg-surface-container-high text-on-surface-variant hover:text-on-surface font-label-caps text-label-caps uppercase transition-all" type="button" data-market="1X2">
+        1X2
       </button>
 </div>
 <!-- Sort Floating Ribbon Controls -->
 <div class="flex items-center justify-between pt-1">
-<span class="font-data-caption text-data-caption text-on-surface-variant uppercase tracking-wider font-semibold">3 Elite Signals Generated</span>
+<span id="ai-signals-count" class="font-data-caption text-data-caption text-on-surface-variant uppercase tracking-wider font-semibold">6 Elite Signals Generated</span>
 <div class="flex items-center gap-space-xs bg-surface-container-low p-0.5 rounded-lg">
 <button class="px-2 py-1 rounded bg-surface-container text-primary font-label-caps text-label-caps uppercase transition-colors" id="sortConf">
           Confidence
@@ -337,7 +337,7 @@
 </div></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/85 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.45)]" data-active-classes="text-primary-container [box-shadow:0_-2px_12px_rgba(0,210,255,0.4)]"><div class="flex justify-around items-center h-20 px-space-xs max-w-lg mx-auto"><a class="flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 text-on-surface-variant hover:text-on-surface transition-all" data-path="radar" href="#"><span class="material-symbols-outlined text-[24px]">radar</span><span class="font-label-caps text-label-caps uppercase">Radar</span></a><a class="relative flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 text-on-surface-variant hover:text-on-surface transition-all" data-path="converter" href="#"><span class="absolute -top-1 right-2 px-1 py-0.2 rounded-full bg-secondary-container text-on-secondary font-label-caps text-[9px] font-extrabold uppercase leading-none tracking-normal">LIVE</span><span class="material-symbols-outlined text-[24px]">published_with_changes</span><span class="font-label-caps text-label-caps uppercase">Converter</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 transition-all text-primary-container [box-shadow:0_-2px_12px_rgba(0,210,255,0.4)]" data-path="ai-predictions" href="#"><span class="material-symbols-outlined text-[24px]">psychology</span><span class="font-label-caps text-label-caps uppercase">AI Predict</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[70px] h-12 text-on-surface-variant hover:text-on-surface transition-all" data-path="vip-pro" href="#"><span class="material-symbols-outlined text-[24px]">hotel_class</span><span class="font-label-caps text-label-caps uppercase">VIP Pro</span></a></div></nav>
 
 <!-- Quick Stitch Screen Switcher Drawer -->
-<div id="stitch-quick-btn" style="position: fixed; top: 72px; right: 12px; z-index: 9999;">
+<div id="stitch-quick-btn" style="position: fixed; bottom: 88px; right: 12px; z-index: 9999;">
   <button onclick="document.getElementById('stitch-modal').classList.remove('hidden')" 
           style="display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 9999px; background: rgba(0, 210, 255, 0.25); border: 1px solid rgba(0, 210, 255, 0.5); color: #a5e7ff; font-family: Outfit, sans-serif; font-size: 11px; font-weight: 700; backdrop-filter: blur(12px); box-shadow: 0 2px 10px rgba(0,0,0,0.6); cursor: pointer;">
     <span>⚡</span>
@@ -523,5 +523,7 @@
   });
 </script>
 
+<script src="live_feed_data.js"></script>
+<script src="finesse_api.js"></script>
 <script src="finesse_nav.js"></script>
 </body></html>

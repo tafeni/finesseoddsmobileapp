@@ -1,0 +1,2496 @@
+window.FINESSE_DEFAULT_FEED = {
+  "version": "1.0.0",
+  "synced_at": "2026-10-11T02:41:28.596Z",
+  "stats": {
+    "win_rate": "54.8%",
+    "win_rate_formatted": "54.8%",
+    "total_evaluated": 252,
+    "total_won": 138,
+    "total_lost": 114,
+    "ev_found_count": 14,
+    "community_slips": "12.8k",
+    "roi_formatted": "+24.8%"
+  },
+  "featured_match": {
+    "id": 1603019,
+    "home_team": "Arsenal",
+    "away_team": "Chelsea",
+    "home_team_logo": "https://media.api-sports.io/football/teams/42.png",
+    "away_team_logo": "https://media.api-sports.io/football/teams/49.png",
+    "home_score": null,
+    "away_score": null,
+    "match_date": "Today 17:30",
+    "kickoff_countdown": "02H 45M 12S",
+    "venue": "Emirates Stadium",
+    "stadium_weather": "14°C • Dry",
+    "league": {
+      "name": "Premier League",
+      "country": "England",
+      "matchday": "Matchday 29",
+      "referee": "M. Oliver (3.8 YC/gm)"
+    },
+    "odds": {
+      "1": 1.82,
+      "2": 4.2,
+      "X": 3.65,
+      "1X": 1.25,
+      "X2": 1.95,
+      "Over25": 1.62,
+      "Under25": 2.25,
+      "BTTS_Yes": 1.7,
+      "BTTS_No": 2.05
+    },
+    "probabilities": {
+      "home": 58,
+      "draw": 24,
+      "away": 18,
+      "over_2_5": 64,
+      "btts": 58,
+      "model_version": "v4.8 High Rigor"
+    },
+    "recommendation": {
+      "pick": "Home Win or Draw (DC 1X)",
+      "secondary_pick": "Over 2.5 Goals",
+      "confidence": 92,
+      "fair_odds": 1.22,
+      "best_market_odds": 1.28,
+      "sportsbook": "SportyBet",
+      "edge_pct": 84,
+      "rationale": "Proprietary Poisson engine identifies London Derby efficiency spike. Arsenal transition velocity (2.4 GF/gm) penalizes Chelsea mid-block transition gaps."
+    },
+    "form": {
+      "home": [
+        "W",
+        "W",
+        "D",
+        "W",
+        "W"
+      ],
+      "away": [
+        "L",
+        "W",
+        "D",
+        "L",
+        "W"
+      ]
+    }
+  },
+  "radar_fixtures": [
+    {
+      "id": 101,
+      "league_name": "Premier League",
+      "status_label": "78' LIVE",
+      "is_live": true,
+      "home_team": "Man City",
+      "away_team": "Liverpool",
+      "home_score": 2,
+      "away_score": 1,
+      "home_logo": "https://media.api-sports.io/football/teams/50.png",
+      "away_logo": "https://media.api-sports.io/football/teams/40.png",
+      "market_name": "Over 2.5 Goals",
+      "market_odds": 1.62,
+      "edge_pct": 84,
+      "gauge_type": "Over 2.5",
+      "tag": "High Value Edge"
+    },
+    {
+      "id": 102,
+      "league_name": "Serie A",
+      "status_label": "Today 20:45",
+      "is_live": false,
+      "home_team": "Inter Milan",
+      "away_team": "Juventus",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/505.png",
+      "away_logo": "https://media.api-sports.io/football/teams/496.png",
+      "market_name": "Both Teams To Score (Yes)",
+      "market_odds": 1.88,
+      "edge_pct": 78,
+      "gauge_type": "BTTS",
+      "tag": "AI Confidence 78%"
+    },
+    {
+      "id": 103,
+      "league_name": "Bundesliga",
+      "status_label": "Today 18:30",
+      "is_live": false,
+      "home_team": "Bayern Munich",
+      "away_team": "Borussia Dortmund",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/157.png",
+      "away_logo": "https://media.api-sports.io/football/teams/165.png",
+      "market_name": "Bayern Munich Win & Over 2.5",
+      "market_odds": 1.74,
+      "edge_pct": 89,
+      "gauge_type": "Home Win",
+      "tag": "Der Klassiker"
+    },
+    {
+      "id": 1603019,
+      "league_name": "Pro League",
+      "status_label": "45' HT",
+      "is_live": true,
+      "home_team": "Al-Ettifaq",
+      "away_team": "Al-Faisaly FC",
+      "home_score": 0,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/2934.png",
+      "away_logo": "https://media.api-sports.io/football/teams/2930.png",
+      "market_name": "Match Result (1X2): Home Win",
+      "market_odds": 1.95,
+      "edge_pct": 59,
+      "gauge_type": "1X2",
+      "tag": "Pro League Live"
+    },
+    {
+      "id": 2386,
+      "league_name": "Serie A (Brazil)",
+      "status_label": "Tonight 23:00",
+      "is_live": false,
+      "home_team": "Corinthians",
+      "away_team": "Bragantino",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://cdn.sportmonks.com/images/soccer/teams/7/967.png",
+      "away_logo": "https://cdn.sportmonks.com/images/soccer/teams/2/2626.png",
+      "market_name": "Under 3.5 Goals",
+      "market_odds": 1.45,
+      "edge_pct": 74,
+      "gauge_type": "Under 3.5",
+      "tag": "Value Edge +5.2%"
+    },
+    {
+      "id": 2384,
+      "league_name": "Liga Profesional",
+      "status_label": "Tonight 22:00",
+      "is_live": false,
+      "home_team": "Tigre",
+      "away_team": "Aldosivi",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "logo.png",
+      "away_logo": "logo.png",
+      "market_name": "Under 2.5 Goals",
+      "market_odds": 1.82,
+      "edge_pct": 68,
+      "gauge_type": "Under 2.5",
+      "tag": "Low Scoring Index"
+    },
+    {
+      "id": 1603019,
+      "league_name": "Pro League",
+      "status_label": "45' LIVE",
+      "is_live": true,
+      "home_team": "Al-Ettifaq",
+      "away_team": "Al-Faisaly FC",
+      "home_score": 0,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/2934.png",
+      "away_logo": "https://media.api-sports.io/football/teams/2930.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 59,
+      "gauge_type": "Home",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1638092,
+      "league_name": "Veikkausliiga",
+      "status_label": "60' LIVE",
+      "is_live": true,
+      "home_team": "VPS",
+      "away_team": "AC Oulu",
+      "home_score": 1,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/650.png",
+      "away_logo": "https://media.api-sports.io/football/teams/2077.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 48,
+      "gauge_type": "Home",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1638078,
+      "league_name": "Veikkausliiga",
+      "status_label": "61' LIVE",
+      "is_live": true,
+      "home_team": "Lahti",
+      "away_team": "Mariehamn",
+      "home_score": 1,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/1166.png",
+      "away_logo": "https://media.api-sports.io/football/teams/587.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 59,
+      "gauge_type": "Home",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1638079,
+      "league_name": "Veikkausliiga",
+      "status_label": "58' LIVE",
+      "is_live": true,
+      "home_team": "Turku PS",
+      "away_team": "SJK",
+      "home_score": 0,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/1168.png",
+      "away_logo": "https://media.api-sports.io/football/teams/689.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 57,
+      "gauge_type": "Home",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1638077,
+      "league_name": "Veikkausliiga",
+      "status_label": "61' LIVE",
+      "is_live": true,
+      "home_team": "Ilves",
+      "away_team": "FF Jaro",
+      "home_score": 0,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/1163.png",
+      "away_logo": "https://media.api-sports.io/football/teams/2075.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 56,
+      "gauge_type": "Home",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1635073,
+      "league_name": "Cup",
+      "status_label": "90' LIVE",
+      "is_live": true,
+      "home_team": "Námestovo",
+      "away_team": "MFK Bytča",
+      "home_score": 0,
+      "away_score": 0,
+      "home_logo": "https://media.api-sports.io/football/teams/14088.png",
+      "away_logo": "https://media.api-sports.io/football/teams/15006.png",
+      "market_name": "Match Result (1X2)",
+      "market_odds": 1.95,
+      "edge_pct": 65,
+      "gauge_type": "1X2",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1635546,
+      "league_name": "Cup",
+      "status_label": "88' LIVE",
+      "is_live": true,
+      "home_team": "Spišská Nová Ves",
+      "away_team": "Podbrezová",
+      "home_score": 1,
+      "away_score": 2,
+      "home_logo": "https://media.api-sports.io/football/teams/10555.png",
+      "away_logo": "https://media.api-sports.io/football/teams/3548.png",
+      "market_name": "Match Result (1X2)",
+      "market_odds": 1.95,
+      "edge_pct": 65,
+      "gauge_type": "1X2",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1630293,
+      "league_name": "Cup",
+      "status_label": "88' LIVE",
+      "is_live": true,
+      "home_team": "Rača",
+      "away_team": "Šamorín",
+      "home_score": 1,
+      "away_score": 2,
+      "home_logo": "https://media.api-sports.io/football/teams/14046.png",
+      "away_logo": "https://media.api-sports.io/football/teams/10545.png",
+      "market_name": "Match Result (1X2)",
+      "market_odds": 1.95,
+      "edge_pct": 65,
+      "gauge_type": "1X2",
+      "tag": "Live Match"
+    },
+    {
+      "id": 1557405,
+      "league_name": "Premier League",
+      "status_label": "20:00",
+      "is_live": false,
+      "home_team": "Sunderland",
+      "away_team": "Arsenal",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/746.png",
+      "away_logo": "https://media.api-sports.io/football/teams/42.png",
+      "market_name": "1X2: Away",
+      "market_odds": 6.5,
+      "edge_pct": 78,
+      "gauge_type": "Away",
+      "tag": "AI Prob 78%"
+    },
+    {
+      "id": 1557413,
+      "league_name": "Premier League",
+      "status_label": "14:00",
+      "is_live": false,
+      "home_team": "Manchester City",
+      "away_team": "Sunderland",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/50.png",
+      "away_logo": "https://media.api-sports.io/football/teams/746.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 82,
+      "gauge_type": "Home",
+      "tag": "AI Prob 82%"
+    },
+    {
+      "id": 1557409,
+      "league_name": "Premier League",
+      "status_label": "15:00",
+      "is_live": false,
+      "home_team": "Brighton",
+      "away_team": "Arsenal",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/51.png",
+      "away_logo": "https://media.api-sports.io/football/teams/42.png",
+      "market_name": "1X2: Away",
+      "market_odds": 1.95,
+      "edge_pct": 80,
+      "gauge_type": "Away",
+      "tag": "AI Prob 80%"
+    },
+    {
+      "id": 1557403,
+      "league_name": "Premier League",
+      "status_label": "15:00",
+      "is_live": false,
+      "home_team": "Liverpool",
+      "away_team": "Fulham",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/40.png",
+      "away_logo": "https://media.api-sports.io/football/teams/36.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.44,
+      "edge_pct": 71,
+      "gauge_type": "Home",
+      "tag": "AI Prob 71%"
+    },
+    {
+      "id": 1557401,
+      "league_name": "Premier League",
+      "status_label": "15:00",
+      "is_live": false,
+      "home_team": "Crystal Palace",
+      "away_team": "Ipswich",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/52.png",
+      "away_logo": "https://media.api-sports.io/football/teams/57.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.85,
+      "edge_pct": 61,
+      "gauge_type": "Home",
+      "tag": "AI Prob 61%"
+    },
+    {
+      "id": 1557398,
+      "league_name": "Premier League",
+      "status_label": "15:00",
+      "is_live": false,
+      "home_team": "Bournemouth",
+      "away_team": "Brentford",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/35.png",
+      "away_logo": "https://media.api-sports.io/football/teams/55.png",
+      "market_name": "DC: X2",
+      "market_odds": 2.5,
+      "edge_pct": 80,
+      "gauge_type": "X2",
+      "tag": "AI Prob 80%"
+    },
+    {
+      "id": 1575161,
+      "league_name": "Bundesliga",
+      "status_label": "14:30",
+      "is_live": false,
+      "home_team": "SC Freiburg",
+      "away_team": "Borussia Mönchengladbach",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/160.png",
+      "away_logo": "https://media.api-sports.io/football/teams/163.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 72,
+      "gauge_type": "Home",
+      "tag": "AI Prob 72%"
+    },
+    {
+      "id": 1557399,
+      "league_name": "Premier League",
+      "status_label": "15:00",
+      "is_live": false,
+      "home_team": "Chelsea",
+      "away_team": "Hull City",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/49.png",
+      "away_logo": "https://media.api-sports.io/football/teams/64.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.25,
+      "edge_pct": 53,
+      "gauge_type": "Home",
+      "tag": "AI Prob 53%"
+    },
+    {
+      "id": 1557397,
+      "league_name": "Premier League",
+      "status_label": "15:00",
+      "is_live": false,
+      "home_team": "Aston Villa",
+      "away_team": "Nottingham Forest",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/66.png",
+      "away_logo": "https://media.api-sports.io/football/teams/65.png",
+      "market_name": "1X2: Home",
+      "market_odds": 2.05,
+      "edge_pct": 61,
+      "gauge_type": "Home",
+      "tag": "AI Prob 61%"
+    },
+    {
+      "id": 1557415,
+      "league_name": "Premier League",
+      "status_label": "17:30",
+      "is_live": false,
+      "home_team": "Nottingham Forest",
+      "away_team": "Coventry",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/65.png",
+      "away_logo": "https://media.api-sports.io/football/teams/1346.png",
+      "market_name": "1X2: Home",
+      "market_odds": 1.95,
+      "edge_pct": 57,
+      "gauge_type": "Home",
+      "tag": "AI Prob 57%"
+    },
+    {
+      "id": 1575174,
+      "league_name": "Bundesliga",
+      "status_label": "14:30",
+      "is_live": false,
+      "home_team": "Borussia Mönchengladbach",
+      "away_team": "FSV Mainz 05",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/163.png",
+      "away_logo": "https://media.api-sports.io/football/teams/164.png",
+      "market_name": "1X2: Away",
+      "market_odds": 1.95,
+      "edge_pct": 71,
+      "gauge_type": "Away",
+      "tag": "AI Prob 71%"
+    },
+    {
+      "id": 1557408,
+      "league_name": "Premier League",
+      "status_label": "20:00",
+      "is_live": false,
+      "home_team": "Brentford",
+      "away_team": "Chelsea",
+      "home_score": null,
+      "away_score": null,
+      "home_logo": "https://media.api-sports.io/football/teams/55.png",
+      "away_logo": "https://media.api-sports.io/football/teams/49.png",
+      "market_name": "OU25: Over 2.5",
+      "market_odds": 1.95,
+      "edge_pct": 63,
+      "gauge_type": "Over 2.5",
+      "tag": "AI Prob 63%"
+    }
+  ],
+  "ai_predictions": [
+    {
+      "id": "pred_1",
+      "matchup": "Real Madrid vs Atletico",
+      "league": "La Liga",
+      "time_badge": "Tonight 20:00",
+      "market_type": "1X2 & Goals",
+      "market_category": "1X2",
+      "signal_title": "Real Madrid Win & Over 1.5",
+      "odds": 2.1,
+      "bookmaker": "Betway",
+      "fair_odds": 1.85,
+      "ev_edge": "+7.4% EV",
+      "confidence": 88,
+      "xg_home": 2.15,
+      "xg_away": 0.94,
+      "is_high_conf": true,
+      "is_value_bet": true,
+      "rationale": "Vinicius attacking efficiency spike + Atletico away defensive regression (1.68 conceded/90m)."
+    },
+    {
+      "id": "pred_2",
+      "matchup": "Aston Villa vs Tottenham",
+      "league": "Premier League",
+      "time_badge": "Sat 15:00",
+      "market_type": "BTTS",
+      "market_category": "BTTS",
+      "signal_title": "Both Teams to Score (Yes)",
+      "odds": 1.65,
+      "bookmaker": "SportyBet",
+      "fair_odds": 1.48,
+      "ev_edge": "+9.1% EV",
+      "confidence": 91,
+      "xg_home": 1.85,
+      "xg_away": 1.72,
+      "is_high_conf": true,
+      "is_value_bet": true,
+      "rationale": "9 of last 10 H2H meetings hit BTTS (90% historical frequency)."
+    },
+    {
+      "id": "pred_3",
+      "matchup": "PSG vs Marseille",
+      "league": "Ligue 1",
+      "time_badge": "Sun 21:00",
+      "market_type": "Over/Under",
+      "market_category": "Over/Under",
+      "signal_title": "Over 2.5 Goals & BTTS",
+      "odds": 1.95,
+      "bookmaker": "1xBet",
+      "fair_odds": 1.72,
+      "ev_edge": "+11.8% EV",
+      "confidence": 86,
+      "xg_home": 2.4,
+      "xg_away": 1.35,
+      "is_high_conf": true,
+      "is_value_bet": true,
+      "rationale": "Le Classique high xG frequency in last 6 encounters (avg 3.8 goals/match)."
+    },
+    {
+      "id": "pred_8383",
+      "matchup": "Johor Darul Takzim FC vs Damansara",
+      "league": "FA Cup",
+      "time_badge": "Evaluated (10 - 0)",
+      "market_type": "Over/Under",
+      "market_category": "Over/Under",
+      "signal_title": "Over 2.5 Goals (Hit 100%)",
+      "odds": 1.8,
+      "bookmaker": "Bet9ja",
+      "fair_odds": 1.6,
+      "ev_edge": "WON (+8.5u)",
+      "confidence": 84,
+      "xg_home": 4.2,
+      "xg_away": 0.2,
+      "is_won": true,
+      "is_high_conf": true,
+      "rationale": "Model correctly identified massive mismatch in cup round."
+    },
+    {
+      "id": "pred_3263",
+      "matchup": "Incheon United vs Bucheon FC",
+      "league": "K League 1",
+      "time_badge": "Evaluated (2 - 1)",
+      "market_type": "1X2",
+      "market_category": "1X2",
+      "signal_title": "Home Win (1X2)",
+      "odds": 2.15,
+      "bookmaker": "SportyBet",
+      "fair_odds": 1.9,
+      "ev_edge": "WON (+11.5u)",
+      "confidence": 79,
+      "xg_home": 1.9,
+      "xg_away": 0.85,
+      "is_won": true,
+      "is_high_conf": false,
+      "rationale": "Home advantage Poisson value edge identified at 2.15 market odds."
+    },
+    {
+      "id": "pred_8376",
+      "matchup": "Atletico Nacional vs Deportivo Cali",
+      "league": "Copa Colombia",
+      "time_badge": "Evaluated (3 - 0)",
+      "market_type": "Over/Under",
+      "market_category": "Over/Under",
+      "signal_title": "Over 2.5 Goals",
+      "odds": 1.92,
+      "bookmaker": "Betway",
+      "fair_odds": 1.75,
+      "ev_edge": "WON (+9.2u)",
+      "confidence": 82,
+      "xg_home": 2.3,
+      "xg_away": 0.7,
+      "is_won": true,
+      "is_high_conf": true,
+      "rationale": "Attack potency in cup fixture exceeded conservative sportsbook odds."
+    }
+  ],
+  "database_matches": [
+    {
+      "id": 2388,
+      "home_team": "Once Caldas",
+      "away_team": "Junior FC",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/27/3547.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/16/7792.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 23:20:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Liga BetPlay",
+        "country": "Colombia",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/0/672.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 49,
+        "draw": 25,
+        "away": 26,
+        "over_2_5": 52,
+        "btts": 54
+      },
+      "correct_scores": {
+        "0-0": 6.25,
+        "0-1": 6.99,
+        "0-2": 3.58,
+        "0-3": 0.91,
+        "1-0": 10.75,
+        "1-1": 12.34,
+        "1-2": 6.97,
+        "1-3": 2.4
+      },
+      "predictions": [],
+      "home_rank": 9,
+      "away_rank": 12
+    },
+    {
+      "id": 2387,
+      "home_team": "UNAN Managua",
+      "away_team": "Real Madriz",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/7/15175.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/team_placeholder.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 23:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Primera Division",
+        "country": "Nicaragua",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/16/752.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 72,
+        "draw": 16,
+        "away": 12,
+        "over_2_5": 54,
+        "btts": 54
+      },
+      "correct_scores": {
+        "0-0": 4.25,
+        "0-1": 3.05,
+        "0-2": 1.43,
+        "0-3": 0.77,
+        "1-0": 8.43,
+        "1-1": 7.37,
+        "1-2": 3.5,
+        "1-3": 0.9
+      },
+      "predictions": [],
+      "home_rank": 9,
+      "away_rank": 10
+    },
+    {
+      "id": 2386,
+      "home_team": "Corinthians",
+      "away_team": "Bragantino",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/15/303.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/0/7808.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 23:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie A",
+        "country": "Brazil",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/8/648.png"
+      },
+      "odds": {
+        "1": 2,
+        "2": 3.7,
+        "X": 3.3,
+        "1X": 1.28,
+        "X2": 1.8,
+        "Over25": 2.15,
+        "Under25": 1.66,
+        "BTTS_Yes": 1.95,
+        "BTTS_No": 1.8
+      },
+      "probabilities": {
+        "home": 50,
+        "draw": 25,
+        "away": 24,
+        "over_2_5": 48,
+        "btts": 51
+      },
+      "correct_scores": {
+        "0-0": 7.77,
+        "0-1": 7.49,
+        "0-2": 3.84,
+        "0-3": 1.23,
+        "1-0": 12.23,
+        "1-1": 12.1,
+        "1-2": 6.08,
+        "1-3": 2.15
+      },
+      "predictions": [
+        {
+          "id": 5400,
+          "market_type": "OU35",
+          "prediction_code": "U35",
+          "probability": 74,
+          "odds": 1.25,
+          "confidence": "high",
+          "reasoning": "AI probability: 74%. League positions: Home #19 vs Away #1. Recommended odd: 1.25",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 19,
+      "away_rank": 1
+    },
+    {
+      "id": 2385,
+      "home_team": "Fluminense",
+      "away_team": "Botafogo",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/7/1095.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/16/2864.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 22:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie A",
+        "country": "Brazil",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/8/648.png"
+      },
+      "odds": {
+        "1": 2.05,
+        "2": 3.6,
+        "X": 3.2,
+        "1X": 1.28,
+        "X2": 1.72,
+        "Over25": 2.05,
+        "Under25": 1.75,
+        "BTTS_Yes": 1.9,
+        "BTTS_No": 1.9
+      },
+      "probabilities": {
+        "home": 54,
+        "draw": 26,
+        "away": 20,
+        "over_2_5": 48,
+        "btts": 48
+      },
+      "correct_scores": {
+        "0-0": 8.3,
+        "0-1": 6.86,
+        "0-2": 3.25,
+        "0-3": 0.94,
+        "1-0": 14.15,
+        "1-1": 11.84,
+        "1-2": 5.23,
+        "1-3": 1.34
+      },
+      "predictions": [],
+      "home_rank": 5,
+      "away_rank": 8
+    },
+    {
+      "id": 2384,
+      "home_team": "Tigre",
+      "away_team": "Aldosivi",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/28/9884.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/18/9874.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 22:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Liga Profesional de Fútbol",
+        "country": "Argentina",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/28/636.png"
+      },
+      "odds": {
+        "1": 2,
+        "2": 4.4,
+        "X": 2.75,
+        "1X": 1.18,
+        "X2": 1.83,
+        "Over25": 2.76,
+        "Under25": 1.35,
+        "BTTS_Yes": 2.3,
+        "BTTS_No": 1.53
+      },
+      "probabilities": {
+        "home": 51,
+        "draw": 29,
+        "away": 21,
+        "over_2_5": 41,
+        "btts": 41
+      },
+      "correct_scores": {
+        "0-0": 11.76,
+        "0-1": 9.04,
+        "0-2": 3.44,
+        "0-3": 0.8,
+        "1-0": 16.2,
+        "1-1": 12.8,
+        "1-2": 4.77,
+        "1-3": 1.24
+      },
+      "predictions": [
+        {
+          "id": 5398,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 59,
+          "odds": 1.35,
+          "confidence": "medium",
+          "reasoning": "AI probability: 59%. League positions: Home #2 vs Away #13. Recommended odd: 1.35",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 2,
+      "away_rank": 13
+    },
+    {
+      "id": 2383,
+      "home_team": "Athletico PR",
+      "away_team": "Santos",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/8/3432.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/4/3684.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 22:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie A",
+        "country": "Brazil",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/8/648.png"
+      },
+      "odds": {
+        "1": 2.25,
+        "2": 3.1,
+        "X": 3.25,
+        "1X": 1.36,
+        "X2": 1.61,
+        "Over25": 2.15,
+        "Under25": 1.66,
+        "BTTS_Yes": 1.95,
+        "BTTS_No": 1.8
+      },
+      "probabilities": {
+        "home": 52,
+        "draw": 24,
+        "away": 25,
+        "over_2_5": 53,
+        "btts": 55
+      },
+      "correct_scores": {
+        "0-0": 5.96,
+        "0-1": 6.09,
+        "0-2": 3.47,
+        "0-3": 1.42,
+        "1-0": 11.18,
+        "1-1": 11.39,
+        "1-2": 5.95,
+        "1-3": 2.34
+      },
+      "predictions": [
+        {
+          "id": 5397,
+          "market_type": "OU35",
+          "prediction_code": "U35",
+          "probability": 69,
+          "odds": 1.25,
+          "confidence": "medium",
+          "reasoning": "AI probability: 69%. League positions: Home #10 vs Away #17. Recommended odd: 1.25",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 10,
+      "away_rank": 17
+    },
+    {
+      "id": 2382,
+      "home_team": "Boyacá Chicó",
+      "away_team": "Jaguares de Córdoba",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/23/14615.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/8/12488.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 21:10:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Liga BetPlay",
+        "country": "Colombia",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/0/672.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 36,
+        "draw": 27,
+        "away": 37,
+        "over_2_5": 42,
+        "btts": 46
+      },
+      "correct_scores": {
+        "0-0": 9.54,
+        "0-1": 12.05,
+        "0-2": 5.82,
+        "0-3": 2.14,
+        "1-0": 11.03,
+        "1-1": 13.12,
+        "1-2": 7.99,
+        "1-3": 3.27
+      },
+      "predictions": [
+        {
+          "id": 5396,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 58,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 58%. League positions: Home #19 vs Away #14",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 19,
+      "away_rank": 14
+    },
+    {
+      "id": 2381,
+      "home_team": "H&H Export",
+      "away_team": "Rancho Santana",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/team_placeholder.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/team_placeholder.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 21:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Primera Division",
+        "country": "Nicaragua",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/16/752.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 51,
+        "draw": 26,
+        "away": 23,
+        "over_2_5": 51,
+        "btts": 51
+      },
+      "correct_scores": {
+        "0-0": 7.89,
+        "0-1": 6.77,
+        "0-2": 3.36,
+        "0-3": 1.33,
+        "1-0": 11.25,
+        "1-1": 11.59,
+        "1-2": 5.41,
+        "1-3": 2.02
+      },
+      "predictions": [],
+      "home_rank": 7,
+      "away_rank": 4
+    },
+    {
+      "id": 2380,
+      "home_team": "Atlético Madrid",
+      "away_team": "FC Barcelona",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/12/7980.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/19/83.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 20:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Copa Del Rey",
+        "country": "Spain",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/26/570.png"
+      },
+      "odds": {
+        "1": 2.75,
+        "2": 2.25,
+        "X": 3.9,
+        "1X": 1.61,
+        "X2": 1.4,
+        "Over25": 1.44,
+        "Under25": 2.7,
+        "BTTS_Yes": 1.4,
+        "BTTS_No": 2.75
+      },
+      "probabilities": {
+        "home": 39,
+        "draw": 21,
+        "away": 41,
+        "over_2_5": 68,
+        "btts": 66
+      },
+      "correct_scores": {
+        "0-0": 3.01,
+        "0-1": 4.94,
+        "0-2": 6,
+        "0-3": 1.6,
+        "1-0": 5.7,
+        "1-1": 7.71,
+        "1-2": 8.21,
+        "1-3": 5.09
+      },
+      "predictions": [],
+      "home_rank": 1,
+      "away_rank": 2
+    },
+    {
+      "id": 2379,
+      "home_team": "Brentford",
+      "away_team": "Arsenal",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/12/236.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/19/19.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 20:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Premier League",
+        "country": "England",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/8/8.png"
+      },
+      "odds": {
+        "1": 5.25,
+        "2": 1.66,
+        "X": 3.6,
+        "1X": 2.15,
+        "X2": 1.16,
+        "Over25": 1.9,
+        "Under25": 1.9,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 18,
+        "draw": 21,
+        "away": 61,
+        "over_2_5": 56,
+        "btts": 52
+      },
+      "correct_scores": {
+        "0-0": 5.65,
+        "0-1": 10.64,
+        "0-2": 10.62,
+        "0-3": 6.34,
+        "1-0": 4.96,
+        "1-1": 9.47,
+        "1-2": 10.5,
+        "1-3": 6.5
+      },
+      "predictions": [],
+      "home_rank": 8,
+      "away_rank": 1
+    },
+    {
+      "id": 2378,
+      "home_team": "Antwerp",
+      "away_team": "Anderlecht",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/8/328.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/27/2555.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Belgian Cup",
+        "country": "Belgium",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/22/214.png"
+      },
+      "odds": {
+        "1": 3.05,
+        "2": 2.3,
+        "X": 3.28,
+        "1X": 1.58,
+        "X2": 1.35,
+        "Over25": 2.03,
+        "Under25": 1.76,
+        "BTTS_Yes": 1.78,
+        "BTTS_No": 1.93
+      },
+      "probabilities": {
+        "home": 34,
+        "draw": 26,
+        "away": 40,
+        "over_2_5": 52,
+        "btts": 57
+      },
+      "correct_scores": {
+        "0-0": 6.78,
+        "0-1": 9.34,
+        "0-2": 6.29,
+        "0-3": 3.38,
+        "1-0": 7.92,
+        "1-1": 12.29,
+        "1-2": 8.91,
+        "1-3": 3.63
+      },
+      "predictions": [
+        {
+          "id": 5392,
+          "market_type": "OU35",
+          "prediction_code": "U35",
+          "probability": 71,
+          "odds": 1.24,
+          "confidence": "high",
+          "reasoning": "AI probability: 71%. League positions: Home #1 vs Away #2. Recommended odd: 1.24",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 1,
+      "away_rank": 2
+    },
+    {
+      "id": 2377,
+      "home_team": "Sion",
+      "away_team": "Basel",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/14/462.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/20/468.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Super League",
+        "country": "Switzerland",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/15/591.png"
+      },
+      "odds": {
+        "1": 2.83,
+        "2": 2.28,
+        "X": 3.64,
+        "1X": 1.59,
+        "X2": 1.4,
+        "Over25": 1.63,
+        "Under25": 2.23,
+        "BTTS_Yes": 1.52,
+        "BTTS_No": 2.37
+      },
+      "probabilities": {
+        "home": 43,
+        "draw": 24,
+        "away": 33,
+        "over_2_5": 58,
+        "btts": 60
+      },
+      "correct_scores": {
+        "0-0": 5.29,
+        "0-1": 6.72,
+        "0-2": 4.41,
+        "0-3": 1.91,
+        "1-0": 8.34,
+        "1-1": 10.61,
+        "1-2": 7.48,
+        "1-3": 3.75
+      },
+      "predictions": [
+        {
+          "id": 5391,
+          "market_type": "OU15",
+          "prediction_code": "O15",
+          "probability": 80,
+          "odds": 1.16,
+          "confidence": "high",
+          "reasoning": "AI probability: 80%. League positions: Home #5 vs Away #4. Recommended odd: 1.16",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 5,
+      "away_rank": 4
+    },
+    {
+      "id": 2376,
+      "home_team": "Thun",
+      "away_team": "Lausanne Sport",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/31/10655.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/21/2357.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Super League",
+        "country": "Switzerland",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/15/591.png"
+      },
+      "odds": {
+        "1": 1.89,
+        "2": 3.55,
+        "X": 3.8,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 41,
+        "draw": 24,
+        "away": 34,
+        "over_2_5": 62,
+        "btts": 62
+      },
+      "correct_scores": {
+        "0-0": 4.45,
+        "0-1": 6.45,
+        "0-2": 4.71,
+        "0-3": 2.42,
+        "1-0": 7.33,
+        "1-1": 11.07,
+        "1-2": 7.9,
+        "1-3": 3.91
+      },
+      "predictions": [],
+      "home_rank": 1,
+      "away_rank": 7
+    },
+    {
+      "id": 2375,
+      "home_team": "Ascoli",
+      "away_team": "Sassari Torres",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/14/1006.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/17/10801.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 59,
+        "draw": 25,
+        "away": 16,
+        "over_2_5": 44,
+        "btts": 44
+      },
+      "correct_scores": {
+        "0-0": 9.03,
+        "0-1": 6.44,
+        "0-2": 2.68,
+        "0-3": 0.16,
+        "1-0": 16.31,
+        "1-1": 12.22,
+        "1-2": 3.83,
+        "1-3": 1.17
+      },
+      "predictions": [],
+      "home_rank": 3,
+      "away_rank": 18
+    },
+    {
+      "id": 2374,
+      "home_team": "Pianese",
+      "away_team": "Perugia",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/0/11040.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/27/731.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 34,
+        "draw": 31,
+        "away": 35,
+        "over_2_5": 48,
+        "btts": 48
+      },
+      "correct_scores": {
+        "0-0": 11.33,
+        "0-1": 11.6,
+        "0-2": 6.16,
+        "0-3": 2.18,
+        "1-0": 11.69,
+        "1-1": 14.28,
+        "1-2": 7.69,
+        "1-3": 3.06
+      },
+      "predictions": [],
+      "home_rank": 7,
+      "away_rank": 17
+    },
+    {
+      "id": 2373,
+      "home_team": "Gubbio",
+      "away_team": "Vis Pesaro",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/0/2016.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/26/24250.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 36,
+        "draw": 31,
+        "away": 33,
+        "over_2_5": 36,
+        "btts": 44
+      },
+      "correct_scores": {
+        "0-0": 12.31,
+        "0-1": 11.96,
+        "0-2": 5.87,
+        "0-3": 1.99,
+        "1-0": 12.9,
+        "1-1": 14.53,
+        "1-2": 7.38,
+        "1-3": 2.56
+      },
+      "predictions": [
+        {
+          "id": 5387,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 64,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 64%. League positions: Home #12 vs Away #8",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 12,
+      "away_rank": 8
+    },
+    {
+      "id": 2372,
+      "home_team": "Athletic Carpi",
+      "away_team": "Arezzo",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/9/258953.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/21/7253.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 18,
+        "draw": 26,
+        "away": 56,
+        "over_2_5": 41,
+        "btts": 43
+      },
+      "correct_scores": {
+        "0-0": 11.33,
+        "0-1": 15.24,
+        "0-2": 11.07,
+        "0-3": 5.78,
+        "1-0": 6.98,
+        "1-1": 11.35,
+        "1-2": 9.84,
+        "1-3": 5.06
+      },
+      "predictions": [
+        {
+          "id": 5386,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 59,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 59%. League positions: Home #11 vs Away #1",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 11,
+      "away_rank": 1
+    },
+    {
+      "id": 2371,
+      "home_team": "Ternana",
+      "away_team": "Ravenna",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/15/7055.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/3/10851.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 39,
+        "draw": 27,
+        "away": 34,
+        "over_2_5": 48,
+        "btts": 48
+      },
+      "correct_scores": {
+        "0-0": 9.76,
+        "0-1": 10.67,
+        "0-2": 5.26,
+        "0-3": 2.21,
+        "1-0": 11.71,
+        "1-1": 13.17,
+        "1-2": 7.89,
+        "1-3": 2.95
+      },
+      "predictions": [],
+      "home_rank": 9,
+      "away_rank": 2
+    },
+    {
+      "id": 2370,
+      "home_team": "Campobasso",
+      "away_team": "Livorno",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/11/10795.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/26/10714.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 48,
+        "draw": 28,
+        "away": 24,
+        "over_2_5": 43,
+        "btts": 48
+      },
+      "correct_scores": {
+        "0-0": 9.34,
+        "0-1": 8,
+        "0-2": 4.07,
+        "0-3": 1.21,
+        "1-0": 13.35,
+        "1-1": 13.69,
+        "1-2": 5.93,
+        "1-3": 2.02
+      },
+      "predictions": [
+        {
+          "id": 5384,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 57,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 57%. League positions: Home #5 vs Away #14",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 5,
+      "away_rank": 14
+    },
+    {
+      "id": 2369,
+      "home_team": "FC Den Bosch",
+      "away_team": "FC Eindhoven",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/17/2385.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/0/320.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 19:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Eerste Divisie",
+        "country": "Netherlands",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/10/74.png"
+      },
+      "odds": {
+        "1": 1.85,
+        "2": 3.6,
+        "X": 3.5,
+        "1X": 1.25,
+        "X2": 1.85,
+        "Over25": 1.6,
+        "Under25": 2.27,
+        "BTTS_Yes": 1.53,
+        "BTTS_No": 2.3
+      },
+      "probabilities": {
+        "home": 48,
+        "draw": 23,
+        "away": 29,
+        "over_2_5": 65,
+        "btts": 65
+      },
+      "correct_scores": {
+        "0-0": 3.65,
+        "0-1": 5.08,
+        "0-2": 3.47,
+        "0-3": 1.72,
+        "1-0": 6.75,
+        "1-1": 10.11,
+        "1-2": 7.11,
+        "1-3": 3.46
+      },
+      "predictions": [
+        {
+          "id": 5383,
+          "market_type": "OU15",
+          "prediction_code": "O15",
+          "probability": 85,
+          "odds": 1.14,
+          "confidence": "high",
+          "reasoning": "AI probability: 85%. League positions: Home #10 vs Away #13. Recommended odd: 1.14",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 10,
+      "away_rank": 13
+    },
+    {
+      "id": 2368,
+      "home_team": "Universitatea Craiova",
+      "away_team": "FCSB",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/28/11676.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/20/3444.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 18:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Romania Cup",
+        "country": "Romania",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/3/483.png"
+      },
+      "odds": {
+        "1": 2.15,
+        "2": 3.18,
+        "X": 3.12,
+        "1X": 1.27,
+        "X2": 1.57,
+        "Over25": 2.04,
+        "Under25": 1.69,
+        "BTTS_Yes": 1.81,
+        "BTTS_No": 1.88
+      },
+      "probabilities": {
+        "home": 48,
+        "draw": 23,
+        "away": 29,
+        "over_2_5": 58,
+        "btts": 59
+      },
+      "correct_scores": {
+        "0-0": 5.38,
+        "0-1": 6.46,
+        "0-2": 3.66,
+        "0-3": 2.16,
+        "1-0": 8.75,
+        "1-1": 10.79,
+        "1-2": 7.33,
+        "1-3": 3.02
+      },
+      "predictions": [
+        {
+          "id": 5382,
+          "market_type": "OU35",
+          "prediction_code": "U35",
+          "probability": 66,
+          "odds": 1.22,
+          "confidence": "medium",
+          "reasoning": "AI probability: 66%. League positions: Home #1 vs Away #3. Recommended odd: 1.22",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 1,
+      "away_rank": 3
+    },
+    {
+      "id": 2367,
+      "home_team": "Gloria Bistrita",
+      "away_team": "UTA Arad",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/0/6208.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/26/8474.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 18:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Romania Cup",
+        "country": "Romania",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/3/483.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 23,
+        "draw": 23,
+        "away": 53,
+        "over_2_5": 50,
+        "btts": 50
+      },
+      "correct_scores": {
+        "0-0": 7.17,
+        "0-1": 11.15,
+        "0-2": 9.06,
+        "0-3": 5.57,
+        "1-0": 7.34,
+        "1-1": 11.34,
+        "1-2": 9.24,
+        "1-3": 5.46
+      },
+      "predictions": [],
+      "home_rank": 4,
+      "away_rank": 2
+    },
+    {
+      "id": 2366,
+      "home_team": "AGF",
+      "away_team": "FC Midtjylland",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/25/2905.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/11/939.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 18:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Landspokal Cup",
+        "country": "Denmark",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/21/277.png"
+      },
+      "odds": {
+        "1": 2.55,
+        "2": 2.55,
+        "X": 3.6,
+        "1X": 1.5,
+        "X2": 1.53,
+        "Over25": 1.53,
+        "Under25": 2.4,
+        "BTTS_Yes": 1.5,
+        "BTTS_No": 2.5
+      },
+      "probabilities": {
+        "home": 51,
+        "draw": 23,
+        "away": 26,
+        "over_2_5": 59,
+        "btts": 58
+      },
+      "correct_scores": {
+        "0-0": 5.05,
+        "0-1": 6.02,
+        "0-2": 3.62,
+        "0-3": 1.42,
+        "1-0": 8.38,
+        "1-1": 10.52,
+        "1-2": 6.56,
+        "1-3": 2.67
+      },
+      "predictions": [
+        {
+          "id": 5380,
+          "market_type": "OU15",
+          "prediction_code": "O15",
+          "probability": 81,
+          "odds": 1.16,
+          "confidence": "high",
+          "reasoning": "AI probability: 81%. League positions: Home #1 vs Away #2. Recommended odd: 1.16",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 1,
+      "away_rank": 2
+    },
+    {
+      "id": 2365,
+      "home_team": "Quevilly Rouen",
+      "away_team": "Concarneau",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/26/1818.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/23/9399.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 18:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "National",
+        "country": "France",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/25/313.png"
+      },
+      "odds": {
+        "1": 3.42,
+        "2": 2.25,
+        "X": 3.04,
+        "1X": 1.57,
+        "X2": 1.29,
+        "Over25": 2.33,
+        "Under25": 1.53,
+        "BTTS_Yes": 1.95,
+        "BTTS_No": 1.75
+      },
+      "probabilities": {
+        "home": 34,
+        "draw": 32,
+        "away": 34,
+        "over_2_5": 36,
+        "btts": 42
+      },
+      "correct_scores": {
+        "0-0": 13.67,
+        "0-1": 12.29,
+        "0-2": 6.44,
+        "0-3": 2.27,
+        "1-0": 12.63,
+        "1-1": 13.21,
+        "1-2": 7.23,
+        "1-3": 2.48
+      },
+      "predictions": [],
+      "home_rank": 16,
+      "away_rank": 8
+    },
+    {
+      "id": 2364,
+      "home_team": "Al Hazm",
+      "away_team": "Al Akhdoud",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/30/17694.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/2/232738.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Pro League",
+        "country": "Saudi Arabia",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/16/944.png"
+      },
+      "odds": {
+        "1": 2.1,
+        "2": 3.2,
+        "X": 2.9,
+        "1X": 1.3,
+        "X2": 1.62,
+        "Over25": 2,
+        "Under25": 1.72,
+        "BTTS_Yes": 1.75,
+        "BTTS_No": 1.91
+      },
+      "probabilities": {
+        "home": 46,
+        "draw": 25,
+        "away": 28,
+        "over_2_5": 51,
+        "btts": 54
+      },
+      "correct_scores": {
+        "0-0": 6.33,
+        "0-1": 7.66,
+        "0-2": 4.06,
+        "0-3": 1.76,
+        "1-0": 11.05,
+        "1-1": 12.39,
+        "1-2": 7.18,
+        "1-3": 2.49
+      },
+      "predictions": [],
+      "home_rank": 12,
+      "away_rank": 17
+    },
+    {
+      "id": 2363,
+      "home_team": "Al-Qadsiah",
+      "away_team": "NEOM SC",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/4/13092.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/2/17730.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:30:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Pro League",
+        "country": "Saudi Arabia",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/16/944.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 40,
+        "draw": 26,
+        "away": 34,
+        "over_2_5": 57,
+        "btts": 59
+      },
+      "correct_scores": {
+        "0-0": 5.63,
+        "0-1": 6.65,
+        "0-2": 4.96,
+        "0-3": 2.69,
+        "1-0": 8.41,
+        "1-1": 11.62,
+        "1-2": 8.08,
+        "1-3": 3.93
+      },
+      "predictions": [],
+      "home_rank": 4,
+      "away_rank": 8
+    },
+    {
+      "id": 2362,
+      "home_team": "Zeljeznicar",
+      "away_team": "Slavija",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/29/3293.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/20/6324.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Bosnia Cup",
+        "country": "Bosnia and Herzegovina",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/31/223.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 77,
+        "draw": 16,
+        "away": 7,
+        "over_2_5": 55,
+        "btts": 41
+      },
+      "correct_scores": {
+        "0-0": 6.02,
+        "0-1": 3.27,
+        "0-2": 1.19,
+        "0-3": 0.25,
+        "1-0": 12.9,
+        "1-1": 7.5,
+        "1-2": 2.08,
+        "1-3": 0.2
+      },
+      "predictions": [],
+      "home_rank": 1,
+      "away_rank": 2
+    },
+    {
+      "id": 2361,
+      "home_team": "Győri ETO",
+      "away_team": "MOL Fehérvár",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/22/7926.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/20/948.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Hungarian Cup",
+        "country": "Hungary",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/17/337.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 57,
+        "draw": 22,
+        "away": 21,
+        "over_2_5": 56,
+        "btts": 53
+      },
+      "correct_scores": {
+        "0-0": 6.18,
+        "0-1": 5.83,
+        "0-2": 2.95,
+        "0-3": 0.98,
+        "1-0": 10.21,
+        "1-1": 10.2,
+        "1-2": 5.18,
+        "1-3": 1.79
+      },
+      "predictions": [],
+      "home_rank": 1,
+      "away_rank": 2
+    },
+    {
+      "id": 2360,
+      "home_team": "Forlì",
+      "away_team": "Pontedera",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/7/10791.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/31/3295.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 55,
+        "draw": 25,
+        "away": 20,
+        "over_2_5": 49,
+        "btts": 49
+      },
+      "correct_scores": {
+        "0-0": 8.09,
+        "0-1": 6.53,
+        "0-2": 2.83,
+        "0-3": 0.95,
+        "1-0": 13.28,
+        "1-1": 11.63,
+        "1-2": 5.3,
+        "1-3": 1.74
+      },
+      "predictions": [],
+      "home_rank": 13,
+      "away_rank": 19
+    },
+    {
+      "id": 2359,
+      "home_team": "Guidonia Montecelio 1937 FC",
+      "away_team": "Bra",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/25/27993.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/27/10971.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 52,
+        "draw": 28,
+        "away": 19,
+        "over_2_5": 37,
+        "btts": 42
+      },
+      "correct_scores": {
+        "0-0": 11.28,
+        "0-1": 8.41,
+        "0-2": 2.78,
+        "0-3": 0.72,
+        "1-0": 16.5,
+        "1-1": 13.06,
+        "1-2": 4.92,
+        "1-3": 1.13
+      },
+      "predictions": [
+        {
+          "id": 5373,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 63,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 63%. League positions: Home #10 vs Away #16",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 10,
+      "away_rank": 16
+    },
+    {
+      "id": 2358,
+      "home_team": "Juventus Next Gen",
+      "away_team": "Sambenedettese",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/21/228725.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/21/7701.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 17:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Serie C: Girone B",
+        "country": "Italy",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/20/1204.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 33,
+        "draw": 33,
+        "away": 34,
+        "over_2_5": 36,
+        "btts": 45
+      },
+      "correct_scores": {
+        "0-0": 12.77,
+        "0-1": 11.91,
+        "0-2": 6.15,
+        "0-3": 2.11,
+        "1-0": 12.14,
+        "1-1": 14.91,
+        "1-2": 7.22,
+        "1-3": 2.93
+      },
+      "predictions": [
+        {
+          "id": 5372,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 64,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 64%. League positions: Home #6 vs Away #15",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 6,
+      "away_rank": 15
+    },
+    {
+      "id": 2357,
+      "home_team": "Al Ahli",
+      "away_team": "A'Ali",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/13/17837.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/14/265038.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 16:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Premier League",
+        "country": "Bahrain",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/11/971.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 29,
+        "draw": 28,
+        "away": 43,
+        "over_2_5": 45,
+        "btts": 49
+      },
+      "correct_scores": {
+        "0-0": 9.01,
+        "0-1": 11.78,
+        "0-2": 7.72,
+        "0-3": 3.62,
+        "1-0": 8.88,
+        "1-1": 13.11,
+        "1-2": 8.67,
+        "1-3": 4.21
+      },
+      "predictions": [
+        {
+          "id": 5371,
+          "market_type": "OU25",
+          "prediction_code": "U25",
+          "probability": 55,
+          "odds": 1.85,
+          "confidence": "medium",
+          "reasoning": "AI probability: 55%. League positions: Home #7 vs Away #6",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 7,
+      "away_rank": 6
+    },
+    {
+      "id": 2356,
+      "home_team": "Lokomotiv Plovdiv",
+      "away_team": "Botev Plovdiv",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/9/329.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/15/943.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 16:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Bulgarian Cup",
+        "country": "Bulgaria",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/17/241.png"
+      },
+      "odds": {
+        "1": 2.22,
+        "2": 3.02,
+        "X": 3.14,
+        "1X": 1.3,
+        "X2": 1.53,
+        "Over25": 2.11,
+        "Under25": 1.65,
+        "BTTS_Yes": 1.83,
+        "BTTS_No": 1.86
+      },
+      "probabilities": {
+        "home": 34,
+        "draw": 29,
+        "away": 37,
+        "over_2_5": 44,
+        "btts": 47
+      },
+      "correct_scores": {
+        "0-0": 10.48,
+        "0-1": 10.68,
+        "0-2": 6.39,
+        "0-3": 2.73,
+        "1-0": 10.09,
+        "1-1": 12.82,
+        "1-2": 7.92,
+        "1-3": 3.15
+      },
+      "predictions": [
+        {
+          "id": 5370,
+          "market_type": "OU35",
+          "prediction_code": "U35",
+          "probability": 77,
+          "odds": 1.18,
+          "confidence": "high",
+          "reasoning": "AI probability: 77%. League positions: Home #1 vs Away #2. Recommended odd: 1.18",
+          "result_status": "pending"
+        }
+      ],
+      "home_rank": 1,
+      "away_rank": 2
+    },
+    {
+      "id": 2355,
+      "home_team": "Dinamo Bucureşti",
+      "away_team": "Hermannstadt",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/2/1026.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/11/12619.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 16:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Romania Cup",
+        "country": "Romania",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/3/483.png"
+      },
+      "odds": {
+        "1": 1.66,
+        "2": 5.25,
+        "X": 3.35,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 58,
+        "draw": 22,
+        "away": 20,
+        "over_2_5": 50,
+        "btts": 48
+      },
+      "correct_scores": {
+        "0-0": 6.88,
+        "0-1": 6.5,
+        "0-2": 2.92,
+        "0-3": 1.22,
+        "1-0": 12.81,
+        "1-1": 11.24,
+        "1-2": 5.67,
+        "1-3": 1.43
+      },
+      "predictions": [],
+      "home_rank": 2,
+      "away_rank": 1
+    },
+    {
+      "id": 2354,
+      "home_team": "CS Dinamo București",
+      "away_team": "Farul Constanța",
+      "home_team_logo": "https://cdn.sportmonks.com/images/soccer/team_placeholder.png",
+      "away_team_logo": "https://cdn.sportmonks.com/images/soccer/teams/27/134619.png",
+      "home_score": null,
+      "away_score": null,
+      "match_date": "2026-02-12 16:00:00",
+      "status": "scheduled",
+      "venue": "Main Stadium",
+      "league": {
+        "name": "Romania Cup",
+        "country": "Romania",
+        "logo": "https://cdn.sportmonks.com/images/soccer/leagues/3/483.png"
+      },
+      "odds": {
+        "1": 1.95,
+        "2": 3.8,
+        "X": 3.4,
+        "1X": 1.25,
+        "X2": 1.75,
+        "Over25": 1.85,
+        "Under25": 1.95,
+        "BTTS_Yes": 1.8,
+        "BTTS_No": 1.95
+      },
+      "probabilities": {
+        "home": 13,
+        "draw": 19,
+        "away": 68,
+        "over_2_5": 51,
+        "btts": 48
+      },
+      "correct_scores": {
+        "0-0": 6.51,
+        "0-1": 13.14,
+        "0-2": 12.54,
+        "0-3": 8.25,
+        "1-0": 5.47,
+        "1-1": 8.75,
+        "1-2": 10.08,
+        "1-3": 7.17
+      },
+      "predictions": [],
+      "home_rank": 6,
+      "away_rank": 4
+    }
+  ]
+};

@@ -49,6 +49,8 @@ public class MainActivity extends Activity {
         settings.setDatabaseEnabled(true);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
+        settings.setAllowFileAccessFromFileURLs(true);
+        settings.setAllowUniversalAccessFromFileURLs(true);
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         settings.setSupportZoom(false);
@@ -60,6 +62,10 @@ public class MainActivity extends Activity {
         webView.addJavascriptInterface(new WebAppInterface(this), "Android");
         webView.setWebChromeClient(new CustomWebChromeClient(progressBar));
         webView.setWebViewClient(new CustomWebViewClient());
+    }
+
+    public void loadUrlOnUiThread(final String url) {
+        runOnUiThread(new LoadUrlRunnable(webView, url));
     }
 
     @Override
